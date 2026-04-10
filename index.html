@@ -4,435 +4,230 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebPro — Websites Profissionais para o Seu Negócio</title>
-  <meta name="description" content="Criamos websites modernos e profissionais para pequenas empresas em Portugal. A partir de €250. Entrega em 7 dias.">
+  <meta name="description" content="Criamos websites modernos para canalizadores, eletricistas, dentistas e pequenas empresas em Portugal. A partir de €250. Pronto em 7 dias.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --ink: #111111;
-      --ink-80: #333333;
-      --ink-50: #777777;
-      --ink-30: #aaaaaa;
-      --ink-15: #d4d4d4;
-      --ink-08: #ebebeb;
-      --ink-04: #f5f5f5;
-      --surface: #ffffff;
-      --accent: #111111;
-      --accent-inv: #ffffff;
-      --highlight: #e85d3a;
-
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'DM Sans', system-ui, sans-serif;
-
-      --container: 1100px;
-      --radius: 16px;
-      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --blue:#1a56db;
+      --blue-dark:#1444af;
+      --blue-light:#e8f0fe;
+      --blue-50:#dbeafe;
+      --green:#059669;
+      --green-light:#ecfdf5;
+      --orange:#ea580c;
+      --orange-light:#fff7ed;
+      --ink:#1e293b;
+      --ink-70:#475569;
+      --ink-40:#94a3b8;
+      --ink-20:#cbd5e1;
+      --ink-10:#e2e8f0;
+      --ink-05:#f1f5f9;
+      --surface:#ffffff;
+      --font-display:'Instrument Serif',Georgia,serif;
+      --font-body:'DM Sans',system-ui,sans-serif;
+      --container:1100px;
+      --radius:14px;
+      --t:0.3s cubic-bezier(0.4,0,0.2,1);
     }
-
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-
-    body {
-      font-family: var(--font-body);
-      color: var(--ink);
-      background: var(--surface);
-      line-height: 1.7;
-      font-size: 16px;
-      overflow-x: hidden;
-    }
-
-    .container { max-width: var(--container); margin: 0 auto; padding: 0 2rem; }
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--font-body);color:var(--ink);background:var(--surface);line-height:1.7;font-size:16px;overflow-x:hidden}
+    .container{max-width:var(--container);margin:0 auto;padding:0 1.5rem}
 
     /* ---- Nav ---- */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.5rem 0;
-      transition: var(--transition);
-    }
-    .nav.scrolled {
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--ink-08);
-      padding: 1rem 0;
-    }
-    .nav__inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav__logo {
-      font-family: var(--font-display); font-size: 1.4rem;
-      color: var(--ink); text-decoration: none;
-    }
-    .nav__links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
-    .nav__links a {
-      font-size: 0.85rem; font-weight: 500; color: var(--ink-50);
-      text-decoration: none; transition: var(--transition); letter-spacing: 0.01em;
-    }
-    .nav__links a:hover { color: var(--ink); }
-    .nav__cta {
-      padding: 0.65rem 1.4rem; background: var(--ink); color: #fff !important;
-      border-radius: 100px; font-size: 0.85rem; font-weight: 500;
-      text-decoration: none; transition: var(--transition);
-    }
-    .nav__cta:hover { background: var(--highlight); transform: translateY(-1px); }
-    .nav__mobile { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .nav__mobile span { display: block; width: 20px; height: 1.5px; background: var(--ink); margin: 5px 0; border-radius: 1px; transition: var(--transition); }
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--ink-10);padding:0.75rem 0}
+    .nav__inner{display:flex;align-items:center;justify-content:space-between}
+    .nav__logo{font-family:var(--font-display);font-size:1.4rem;color:var(--ink);text-decoration:none}
+    .nav__logo span{color:var(--blue)}
+    .nav__right{display:flex;align-items:center;gap:1.5rem}
+    .nav__links{display:flex;gap:1.5rem;list-style:none}
+    .nav__links a{font-size:0.85rem;font-weight:500;color:var(--ink-70);text-decoration:none;transition:var(--t)}
+    .nav__links a:hover{color:var(--ink)}
+    .nav__phone{display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:600;color:var(--ink);text-decoration:none}
+    .nav__phone svg{width:16px;height:16px;stroke:var(--blue)}
+    .nav__cta{padding:0.55rem 1.2rem;background:var(--blue);color:#fff;border-radius:100px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:var(--t);border:none;cursor:pointer}
+    .nav__cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
+    .nav__mobile{display:none;background:none;border:none;cursor:pointer;padding:0.5rem}
+    .nav__mobile span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0;border-radius:1px}
 
     /* ---- Hero ---- */
-    .hero {
-      padding: 12rem 0 8rem;
-      position: relative;
-    }
-    .hero__label {
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--ink-50);
-      margin-bottom: 2rem;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .hero__dot {
-      width: 6px; height: 6px; background: var(--highlight);
-      border-radius: 50%; animation: blink 2s infinite;
-    }
-    @keyframes blink {
-      0%,100% { opacity: 1; } 50% { opacity: 0.3; }
-    }
-    .hero__title {
-      font-family: var(--font-display);
-      font-size: clamp(3.5rem, 7.5vw, 6rem);
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      font-weight: 400;
-      max-width: 900px;
-    }
-    .hero__title em {
-      font-style: italic; color: var(--highlight);
-    }
-    .hero__desc {
-      font-size: 1.15rem; color: var(--ink-50);
-      max-width: 440px; margin-top: 2.5rem; line-height: 1.8;
-    }
-    .hero__actions { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.9rem 2rem; border-radius: 100px;
-      font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
-      text-decoration: none; cursor: pointer; transition: var(--transition);
-      border: 1.5px solid transparent;
-    }
-    .btn--dark { background: var(--ink); color: #fff; border-color: var(--ink); }
-    .btn--dark:hover { background: var(--highlight); border-color: var(--highlight); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,93,58,0.2); }
-    .btn--ghost { background: transparent; color: var(--ink); border-color: var(--ink-15); }
-    .btn--ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
-    .btn svg { width: 15px; height: 15px; }
+    .hero{padding:8rem 0 5rem;background:linear-gradient(180deg,var(--blue-light) 0%,var(--surface) 100%);position:relative}
+    .hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .hero__badge{display:inline-flex;align-items:center;gap:0.4rem;background:var(--green-light);color:var(--green);font-size:0.75rem;font-weight:600;padding:0.35rem 0.8rem;border-radius:100px;margin-bottom:1.5rem}
+    .hero__badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .hero__title{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.1;letter-spacing:-0.02em;font-weight:400}
+    .hero__title em{font-style:italic;color:var(--blue)}
+    .hero__desc{font-size:1.1rem;color:var(--ink-70);margin-top:1.5rem;line-height:1.8;max-width:480px}
+    .hero__actions{display:flex;gap:0.75rem;margin-top:2rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.8rem;border-radius:100px;font-family:var(--font-body);font-size:0.9rem;font-weight:600;text-decoration:none;cursor:pointer;transition:var(--t);border:2px solid transparent}
+    .btn svg{width:16px;height:16px}
+    .btn--blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .btn--blue:hover{background:var(--blue-dark);border-color:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,86,219,0.25)}
+    .btn--white{background:#fff;color:var(--ink);border-color:var(--ink-20)}
+    .btn--white:hover{border-color:var(--ink);transform:translateY(-1px)}
+    .hero__proof{display:flex;align-items:center;gap:1rem;margin-top:2rem;font-size:0.85rem;color:var(--ink-70)}
+    .hero__stars{color:#f59e0b;font-size:1rem;letter-spacing:2px}
+    .hero__visual{position:relative}
+    .hero__mockup{width:100%;aspect-ratio:4/3;background:var(--surface);border-radius:var(--radius);box-shadow:0 20px 60px rgba(26,86,219,0.12),0 4px 16px rgba(0,0,0,0.06);border:1px solid var(--ink-10);display:flex;flex-direction:column;overflow:hidden}
+    .hero__mockup-bar{height:32px;background:var(--ink-05);border-bottom:1px solid var(--ink-10);display:flex;align-items:center;padding:0 12px;gap:6px}
+    .hero__mockup-dot{width:8px;height:8px;border-radius:50%;background:var(--ink-20)}
+    .hero__mockup-body{flex:1;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--ink-05),var(--blue-light))}
+    .hero__mockup-text{text-align:center;color:var(--ink-40);font-size:0.85rem;font-style:italic}
 
-    .hero__stats {
-      display: flex; gap: 4rem; margin-top: 6rem;
-      padding-top: 3rem; border-top: 1px solid var(--ink-08);
-    }
-    .stat__value {
-      font-family: var(--font-display); font-size: 2.5rem; line-height: 1;
-    }
-    .stat__label { font-size: 0.8rem; color: var(--ink-50); margin-top: 0.3rem; }
-
-    /* ---- Divider ---- */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--ink-08), transparent);
-      margin: 0;
-    }
+    /* ---- Trust Bar ---- */
+    .trust{padding:3rem 0;background:var(--ink);color:#fff}
+    .trust__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+    .trust__value{font-family:var(--font-display);font-size:2.2rem;line-height:1}
+    .trust__label{font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:0.3rem}
 
     /* ---- Process ---- */
-    .process { padding: 8rem 0; }
-    .section-label {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--ink-30); margin-bottom: 1.5rem;
-    }
-    .section-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.1; letter-spacing: -0.02em;
-      font-weight: 400; max-width: 550px;
-    }
-    .section-heading em { font-style: italic; }
-    .section-desc {
-      font-size: 1.05rem; color: var(--ink-50);
-      max-width: 440px; margin-top: 1.5rem; line-height: 1.8;
-    }
-    .process__grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2rem; margin-top: 5rem;
-    }
-    .process__card {
-      padding: 2rem 1.5rem;
-      border: 1px solid var(--ink-08);
-      border-radius: var(--radius);
-      transition: var(--transition);
-      position: relative;
-    }
-    .process__card:hover {
-      border-color: var(--ink-15);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.04);
-    }
-    .process__num {
-      font-family: var(--font-display); font-size: 2.5rem;
-      color: var(--ink-08); line-height: 1; margin-bottom: 1.5rem;
-    }
-    .process__card:hover .process__num { color: var(--highlight); }
-    .process__card-title {
-      font-weight: 600; font-size: 0.95rem; margin-bottom: 0.6rem;
-    }
-    .process__card-desc {
-      font-size: 0.85rem; color: var(--ink-50); line-height: 1.7;
-    }
+    .process{padding:6rem 0}
+    .section-tag{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.75rem}
+    .section-heading{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.15;letter-spacing:-0.015em;font-weight:400;max-width:520px}
+    .section-heading em{font-style:italic}
+    .section-desc{font-size:1rem;color:var(--ink-70);max-width:440px;margin-top:1rem;line-height:1.8}
+    .process__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem}
+    .process__card{padding:1.5rem;background:var(--ink-05);border-radius:var(--radius);transition:var(--t);border:1px solid transparent}
+    .process__card:hover{background:var(--blue-light);border-color:var(--blue);transform:translateY(-3px)}
+    .process__icon{width:44px;height:44px;background:var(--blue);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:1rem}
+    .process__card-title{font-weight:700;font-size:0.95rem;margin-bottom:0.4rem}
+    .process__card-desc{font-size:0.85rem;color:var(--ink-70);line-height:1.7}
 
     /* ---- Pricing ---- */
-    .pricing { padding: 8rem 0; background: var(--ink-04); }
-    .pricing__header { text-align: center; margin-bottom: 5rem; }
-    .pricing__header .section-heading { margin: 0 auto; max-width: none; }
-    .pricing__header .section-desc { margin: 1.5rem auto 0; text-align: center; }
-    .pricing__grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem; align-items: start;
-    }
-    .price-card {
-      background: var(--surface);
-      border: 1px solid var(--ink-08);
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      transition: var(--transition);
-      position: relative;
-    }
-    .price-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
-    }
-    .price-card--featured {
-      background: var(--ink); color: #fff;
-      border-color: var(--ink);
-    }
-    .price-card__badge {
-      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-      background: var(--highlight); color: #fff;
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 0.25rem 0.9rem;
-      border-radius: 100px; white-space: nowrap;
-    }
-    .price-card__tier {
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--ink-30); margin-bottom: 1.2rem;
-    }
-    .price-card--featured .price-card__tier { color: rgba(255,255,255,0.4); }
-    .price-card__amount {
-      font-family: var(--font-display); font-size: 3.5rem; line-height: 1;
-    }
-    .price-card__period {
-      font-size: 0.8rem; color: var(--ink-50); margin-top: 0.3rem;
-      margin-bottom: 1.5rem;
-    }
-    .price-card--featured .price-card__period { color: rgba(255,255,255,0.5); }
-    .price-card__blurb {
-      font-size: 0.9rem; color: var(--ink-50); line-height: 1.7;
-      padding-bottom: 1.5rem; margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--ink-08);
-    }
-    .price-card--featured .price-card__blurb {
-      color: rgba(255,255,255,0.6);
-      border-bottom-color: rgba(255,255,255,0.1);
-    }
-    .price-card__features { list-style: none; margin-bottom: 2rem; }
-    .price-card__features li {
-      font-size: 0.85rem; color: var(--ink-80);
-      padding: 0.45rem 0; display: flex; align-items: center; gap: 0.6rem;
-    }
-    .price-card--featured .price-card__features li { color: rgba(255,255,255,0.75); }
-    .price-card__features li::before {
-      content: ''; width: 5px; height: 5px;
-      background: var(--highlight); border-radius: 50%; flex-shrink: 0;
-    }
-    .price-card .btn { width: 100%; justify-content: center; }
+    .pricing{padding:6rem 0;background:var(--ink-05)}
+    .pricing__header{text-align:center;margin-bottom:3.5rem}
+    .pricing__header .section-heading{margin:0 auto;max-width:none}
+    .pricing__header .section-desc{margin:1rem auto 0;text-align:center}
+    .pricing__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .price-card{background:#fff;border:1.5px solid var(--ink-10);border-radius:var(--radius);padding:2rem;transition:var(--t);position:relative}
+    .price-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.06)}
+    .price-card--pop{border-color:var(--blue);box-shadow:0 4px 20px rgba(26,86,219,0.1)}
+    .price-card__badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.8rem;border-radius:100px;white-space:nowrap}
+    .price-card__tier{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-40);margin-bottom:1rem}
+    .price-card__amount{font-family:var(--font-display);font-size:3rem;line-height:1}
+    .price-card__period{font-size:0.8rem;color:var(--ink-40);margin-top:0.2rem;margin-bottom:1.2rem}
+    .price-card__blurb{font-size:0.85rem;color:var(--ink-70);line-height:1.7;padding-bottom:1.2rem;margin-bottom:1.2rem;border-bottom:1px solid var(--ink-10)}
+    .price-card__features{list-style:none;margin-bottom:1.5rem}
+    .price-card__features li{font-size:0.85rem;color:var(--ink-70);padding:0.35rem 0;display:flex;align-items:center;gap:0.5rem}
+    .price-card__features li::before{content:'✓';color:var(--green);font-weight:700;font-size:0.8rem}
+    .price-card .btn{width:100%;justify-content:center}
+
+    /* ---- Reviews ---- */
+    .reviews{padding:6rem 0}
+    .reviews__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+    .review-card{padding:1.5rem;background:var(--ink-05);border-radius:var(--radius);transition:var(--t)}
+    .review-card:hover{background:var(--blue-light)}
+    .review-card__stars{color:#f59e0b;font-size:0.85rem;letter-spacing:2px;margin-bottom:0.75rem}
+    .review-card__text{font-size:0.9rem;color:var(--ink-70);line-height:1.7;font-style:italic;margin-bottom:1rem}
+    .review-card__author{font-weight:700;font-size:0.85rem}
+    .review-card__biz{font-size:0.75rem;color:var(--ink-40)}
 
     /* ---- Portfolio ---- */
-    .portfolio { padding: 8rem 0; }
-    .portfolio__grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem; margin-top: 5rem;
-    }
-    .folio-card {
-      border: 1px solid var(--ink-08); border-radius: var(--radius);
-      overflow: hidden; transition: var(--transition);
-    }
-    .folio-card:hover {
-      border-color: var(--ink-15);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.04);
-    }
-    .folio-card__preview {
-      height: 260px;
-      background: var(--ink-04);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .folio-card__preview::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        -45deg, transparent, transparent 12px,
-        rgba(0,0,0,0.012) 12px, rgba(0,0,0,0.012) 24px
-      );
-    }
-    .folio-card__soon {
-      font-family: var(--font-display); font-size: 1rem;
-      font-style: italic; color: var(--ink-30); z-index: 1;
-    }
-    .folio-card__info { padding: 1.2rem 1.5rem; }
-    .folio-card__name { font-weight: 600; font-size: 0.9rem; }
-    .folio-card__type { font-size: 0.75rem; color: var(--ink-50); margin-top: 0.15rem; }
+    .portfolio{padding:6rem 0;background:var(--ink-05)}
+    .portfolio__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3.5rem}
+    .folio-card{border:1px solid var(--ink-10);border-radius:var(--radius);overflow:hidden;background:#fff;transition:var(--t)}
+    .folio-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.05)}
+    .folio-card__preview{height:220px;background:linear-gradient(135deg,var(--ink-05),var(--blue-light));display:flex;align-items:center;justify-content:center}
+    .folio-card__soon{font-family:var(--font-display);font-style:italic;color:var(--ink-40);font-size:0.95rem}
+    .folio-card__info{padding:1rem 1.25rem}
+    .folio-card__name{font-weight:700;font-size:0.9rem}
+    .folio-card__type{font-size:0.75rem;color:var(--ink-40);margin-top:0.1rem}
 
     /* ---- About ---- */
-    .about { padding: 8rem 0; background: var(--ink-04); }
-    .about__inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem; align-items: center;
-    }
-    .about__photo {
-      aspect-ratio: 4/5; background: var(--ink-08);
-      border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .about__photo-placeholder {
-      text-align: center; color: var(--ink-30);
-    }
-    .about__photo-placeholder svg { width: 48px; height: 48px; stroke: var(--ink-15); margin-bottom: 0.75rem; }
-    .about__photo-placeholder span { display: block; font-size: 0.8rem; font-style: italic; }
-    .about__text p {
-      font-size: 1.05rem; color: var(--ink-50);
-      line-height: 1.85; margin-top: 1.5rem;
-    }
-    .about__sig {
-      margin-top: 2.5rem; padding-top: 1.5rem;
-      border-top: 1px solid var(--ink-08);
-    }
-    .about__sig-name { font-family: var(--font-display); font-size: 1.2rem; font-style: italic; }
-    .about__sig-role { font-size: 0.75rem; color: var(--ink-50); margin-top: 0.15rem; }
+    .about{padding:6rem 0}
+    .about__inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .about__photo{aspect-ratio:4/5;background:linear-gradient(135deg,var(--ink-05),var(--blue-light));border-radius:var(--radius);display:flex;align-items:center;justify-content:center}
+    .about__placeholder{text-align:center;color:var(--ink-40)}
+    .about__placeholder svg{width:48px;height:48px;stroke:var(--ink-20);margin-bottom:0.5rem}
+    .about__placeholder span{display:block;font-size:0.8rem;font-style:italic}
+    .about__text p{font-size:1rem;color:var(--ink-70);line-height:1.85;margin-top:1.2rem}
+    .about__sig{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--ink-10)}
+    .about__sig-name{font-family:var(--font-display);font-size:1.15rem;font-style:italic}
+    .about__sig-role{font-size:0.75rem;color:var(--ink-40);margin-top:0.1rem}
 
     /* ---- Contact ---- */
-    .contact { padding: 8rem 0; }
-    .contact__inner {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-    }
-    .contact__info p {
-      font-size: 1.05rem; color: var(--ink-50);
-      line-height: 1.8; margin-top: 1.5rem; margin-bottom: 2.5rem;
-    }
-    .contact__line {
-      display: flex; align-items: center; gap: 0.75rem;
-      font-size: 0.9rem; color: var(--ink-80); margin-bottom: 1rem;
-    }
-    .contact__line-icon {
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--ink-04); border-radius: 10px; flex-shrink: 0;
-    }
-    .contact__line-icon svg { width: 16px; height: 16px; stroke: var(--ink-50); }
-    .contact__form {
-      background: var(--ink-04); padding: 2.5rem;
-      border-radius: var(--radius);
-    }
-    .field { margin-bottom: 1.2rem; }
-    .field label {
-      display: block; font-size: 0.75rem; font-weight: 600;
-      color: var(--ink); margin-bottom: 0.4rem; letter-spacing: 0.03em;
-    }
-    .field input, .field textarea {
-      width: 100%; padding: 0.8rem 1rem;
-      border: 1.5px solid var(--ink-08); border-radius: 10px;
-      font-family: var(--font-body); font-size: 0.9rem;
-      color: var(--ink); background: var(--surface);
-      transition: var(--transition); outline: none;
-    }
-    .field input:focus, .field textarea:focus {
-      border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,17,0.05);
-    }
-    .field textarea { resize: vertical; min-height: 110px; }
-    .field input::placeholder, .field textarea::placeholder { color: var(--ink-30); }
-    .contact__form .btn { width: 100%; justify-content: center; margin-top: 0.5rem; }
+    .contact{padding:6rem 0;background:var(--ink-05)}
+    .contact__inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+    .contact__info p{font-size:1rem;color:var(--ink-70);line-height:1.8;margin-top:1.2rem;margin-bottom:2rem}
+    .contact__line{display:flex;align-items:center;gap:0.6rem;font-size:0.9rem;color:var(--ink);margin-bottom:0.8rem;font-weight:500}
+    .contact__line-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--blue-light);border-radius:8px;flex-shrink:0}
+    .contact__line-icon svg{width:16px;height:16px;stroke:var(--blue)}
+    .contact__form{background:#fff;padding:2rem;border-radius:var(--radius);border:1px solid var(--ink-10)}
+    .field{margin-bottom:1rem}
+    .field label{display:block;font-size:0.75rem;font-weight:700;margin-bottom:0.3rem}
+    .field input,.field textarea{width:100%;padding:0.75rem 0.9rem;border:1.5px solid var(--ink-10);border-radius:10px;font-family:var(--font-body);font-size:0.9rem;color:var(--ink);background:#fff;transition:var(--t);outline:none}
+    .field input:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,219,0.08)}
+    .field textarea{resize:vertical;min-height:100px}
+    .field input::placeholder,.field textarea::placeholder{color:var(--ink-40)}
+    .contact__form .btn{width:100%;justify-content:center;margin-top:0.3rem}
+
+    /* ---- CTA Banner ---- */
+    .cta-banner{padding:4rem 0;background:var(--blue);color:#fff;text-align:center}
+    .cta-banner__title{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;margin-bottom:0.5rem}
+    .cta-banner__desc{font-size:1rem;opacity:0.8;margin-bottom:1.5rem}
+    .cta-banner .btn--white{border-color:rgba(255,255,255,0.3);color:#fff}
+    .cta-banner .btn--white:hover{background:rgba(255,255,255,0.15);border-color:#fff}
 
     /* ---- Footer ---- */
-    .footer {
-      padding: 2rem 0; border-top: 1px solid var(--ink-08);
-    }
-    .footer__inner {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer__logo {
-      font-family: var(--font-display); font-size: 1.1rem;
-      color: var(--ink); text-decoration: none;
-    }
-    .footer__links { display: flex; gap: 2rem; list-style: none; }
-    .footer__links a {
-      font-size: 0.8rem; color: var(--ink-50);
-      text-decoration: none; transition: var(--transition);
-    }
-    .footer__links a:hover { color: var(--ink); }
-    .footer__copy {
-      width: 100%; text-align: center;
-      font-size: 0.75rem; color: var(--ink-30);
-      margin-top: 1.5rem; padding-top: 1.5rem;
-      border-top: 1px solid var(--ink-08);
-    }
+    .footer{padding:1.5rem 0;border-top:1px solid var(--ink-10)}
+    .footer__inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+    .footer__logo{font-family:var(--font-display);font-size:1.1rem;color:var(--ink);text-decoration:none}
+    .footer__logo span{color:var(--blue)}
+    .footer__links{display:flex;gap:1.5rem;list-style:none}
+    .footer__links a{font-size:0.8rem;color:var(--ink-40);text-decoration:none;transition:var(--t)}
+    .footer__links a:hover{color:var(--ink)}
+    .footer__copy{width:100%;text-align:center;font-size:0.75rem;color:var(--ink-40);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--ink-10)}
 
     /* ---- Reveal ---- */
-    .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.vis { opacity: 1; transform: translateY(0); }
-    .d1 { transition-delay: 0.08s; }
-    .d2 { transition-delay: 0.16s; }
-    .d3 { transition-delay: 0.24s; }
-    .d4 { transition-delay: 0.32s; }
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:0.08s}.d2{transition-delay:0.16s}.d3{transition-delay:0.24s}.d4{transition-delay:0.32s}
 
     /* ---- Responsive ---- */
-    @media (max-width: 1024px) {
-      .process__grid { grid-template-columns: repeat(2, 1fr); }
-      .pricing__grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
-      .about__inner, .contact__inner { grid-template-columns: 1fr; gap: 3rem; }
-      .about__photo { max-width: 380px; }
+    @media(max-width:1024px){
+      .hero__grid{grid-template-columns:1fr;gap:2.5rem}
+      .hero__visual{max-width:480px}
+      .process__grid{grid-template-columns:repeat(2,1fr)}
+      .pricing__grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+      .reviews__grid{grid-template-columns:1fr}
+      .about__inner,.contact__inner{grid-template-columns:1fr;gap:2.5rem}
+      .about__photo{max-width:360px}
+      .trust__grid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
     }
-    @media (max-width: 768px) {
-      .hero { padding: 9rem 0 5rem; }
-      .hero__stats { flex-direction: column; gap: 1.5rem; }
-      .stat { display: flex; align-items: center; gap: 0.75rem; }
-      .stat__label { margin-top: 0; }
-      .nav__links { display: none; }
-      .nav__links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: var(--surface); border-bottom: 1px solid var(--ink-08);
-        padding: 2rem; gap: 1.2rem; box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      }
-      .nav__mobile { display: block; }
-      .process__grid { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
-      .portfolio__grid { grid-template-columns: 1fr; }
-      .hero__actions { flex-direction: column; align-items: flex-start; }
+    @media(max-width:768px){
+      .hero{padding:6.5rem 0 3rem}
+      .nav__links{display:none}
+      .nav__links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--ink-10);padding:1.5rem;gap:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.05)}
+      .nav__mobile{display:block}
+      .nav__phone--desktop{display:none}
+      .process__grid,.portfolio__grid{grid-template-columns:1fr}
+      .hero__actions{flex-direction:column;align-items:stretch}
+      .btn{justify-content:center}
     }
   </style>
 </head>
 <body>
 
   <!-- Nav -->
-  <nav class="nav" id="nav">
+  <nav class="nav">
     <div class="container nav__inner">
-      <a href="#" class="nav__logo">WebPro</a>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="#processo">Como Funciona</a></li>
-        <li><a href="#precos">Preços</a></li>
-        <li><a href="#portfolio">Portfólio</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#contacto" class="nav__cta">Pedir Orçamento</a></li>
-      </ul>
+      <a href="#" class="nav__logo">Web<span>Pro</span></a>
+      <div class="nav__right">
+        <ul class="nav__links" id="navLinks">
+          <li><a href="#processo">Como Funciona</a></li>
+          <li><a href="#precos">Preços</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+        </ul>
+        <a href="tel:+351900000000" class="nav__phone nav__phone--desktop">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          900 000 000
+        </a>
+        <a href="#contacto" class="nav__cta">Orçamento Grátis</a>
+      </div>
       <button class="nav__mobile" id="mobileToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -442,68 +237,99 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="hero__label reveal">
-        <span class="hero__dot"></span>
-        A aceitar novos projetos
-      </div>
-      <h1 class="hero__title reveal d1">
-        Websites que<br><em>vendem.</em> Preços<br>que fazem sentido.
-      </h1>
-      <p class="hero__desc reveal d2">
-        Criamos websites modernos para pequenas empresas em Portugal. Sem complicações — apenas resultados.
-      </p>
-      <div class="hero__actions reveal d3">
-        <a href="#contacto" class="btn btn--dark">
-          Começar Agora
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-        </a>
-        <a href="#precos" class="btn btn--ghost">Ver Preços</a>
-      </div>
-      <div class="hero__stats reveal d4">
-        <div class="stat">
-          <div class="stat__value">€250</div>
-          <div class="stat__label">A partir de</div>
+      <div class="hero__grid">
+        <div class="hero__content">
+          <div class="hero__badge reveal">
+            <span class="hero__badge-dot"></span>
+            A aceitar novos projetos
+          </div>
+          <h1 class="hero__title reveal d1">
+            O seu negócio merece um website <em>à sua altura</em>
+          </h1>
+          <p class="hero__desc reveal d2">
+            Criamos websites modernos e profissionais para canalizadores, eletricistas, dentistas e outros negócios locais em Portugal. Pronto em 7 dias, a partir de €250.
+          </p>
+          <div class="hero__actions reveal d3">
+            <a href="#contacto" class="btn btn--blue">
+              Pedir Orçamento Grátis
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
+            </a>
+            <a href="tel:+351900000000" class="btn btn--white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              Ligue Agora
+            </a>
+          </div>
+          <div class="hero__proof reveal d4">
+            <span class="hero__stars">★★★★★</span>
+            <span>Avaliação 5/5 dos nossos clientes</span>
+          </div>
         </div>
-        <div class="stat">
-          <div class="stat__value">7 dias</div>
-          <div class="stat__label">Prazo de entrega</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value">100%</div>
-          <div class="stat__label">Garantia de satisfação</div>
+        <div class="hero__visual reveal d2">
+          <div class="hero__mockup">
+            <div class="hero__mockup-bar">
+              <span class="hero__mockup-dot"></span>
+              <span class="hero__mockup-dot"></span>
+              <span class="hero__mockup-dot"></span>
+            </div>
+            <div class="hero__mockup-body">
+              <div class="hero__mockup-text">Pré-visualização do seu<br>novo website aqui</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- Trust Bar -->
+  <section class="trust">
+    <div class="container">
+      <div class="trust__grid">
+        <div class="reveal">
+          <div class="trust__value">€250</div>
+          <div class="trust__label">A partir de</div>
+        </div>
+        <div class="reveal d1">
+          <div class="trust__value">7 dias</div>
+          <div class="trust__label">Prazo de entrega</div>
+        </div>
+        <div class="reveal d2">
+          <div class="trust__value">100%</div>
+          <div class="trust__label">Garantia de satisfação</div>
+        </div>
+        <div class="reveal d3">
+          <div class="trust__value">0€</div>
+          <div class="trust__label">Custo do orçamento</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Process -->
   <section class="process" id="processo">
     <div class="container">
-      <div class="section-label reveal">Como Funciona</div>
-      <h2 class="section-heading reveal d1">Um processo <em>simples</em><br>do início ao fim</h2>
-      <p class="section-desc reveal d2">Tratamos de tudo para que possa focar-se no que faz melhor — gerir o seu negócio.</p>
+      <div class="section-tag reveal">Como Funciona</div>
+      <h2 class="section-heading reveal d1">Nós tratamos de <em>tudo</em></h2>
+      <p class="section-desc reveal d2">Você concentra-se no seu trabalho. Nós criamos o website perfeito para atrair mais clientes.</p>
       <div class="process__grid">
         <div class="process__card reveal">
-          <div class="process__num">01</div>
+          <div class="process__icon">1</div>
           <div class="process__card-title">Encontramos o Seu Negócio</div>
-          <p class="process__card-desc">Identificamos empresas que merecem uma presença online à altura da sua qualidade.</p>
+          <p class="process__card-desc">Identificamos a sua empresa e analisamos o que precisa para ter uma presença online forte.</p>
         </div>
         <div class="process__card reveal d1">
-          <div class="process__num">02</div>
-          <div class="process__card-title">Criamos o Redesign</div>
-          <p class="process__card-desc">Construímos uma versão moderna do seu site com o seu conteúdo real — sem genéricos.</p>
+          <div class="process__icon">2</div>
+          <div class="process__card-title">Criamos o Seu Website</div>
+          <p class="process__card-desc">Construímos um website moderno com os seus serviços, contactos e informações reais — nada genérico.</p>
         </div>
         <div class="process__card reveal d2">
-          <div class="process__num">03</div>
-          <div class="process__card-title">Recebe a Pré-visualização</div>
-          <p class="process__card-desc">Enviamos-lhe o novo site pronto para ver. Sem compromisso, sem obrigação.</p>
+          <div class="process__icon">3</div>
+          <div class="process__card-title">Você Vê o Resultado</div>
+          <p class="process__card-desc">Enviamos-lhe o website pronto para ver. Sem compromisso e sem pagar nada.</p>
         </div>
         <div class="process__card reveal d3">
-          <div class="process__num">04</div>
-          <div class="process__card-title">Aprova e Publica</div>
-          <p class="process__card-desc">Gostou? Conectamos o seu domínio e o site fica online em minutos.</p>
+          <div class="process__icon">4</div>
+          <div class="process__card-title">Aprova e Fica Online</div>
+          <p class="process__card-desc">Gostou? Colocamos o site online com o seu domínio. Não gostou? Sem problema nenhum.</p>
         </div>
       </div>
     </div>
@@ -513,60 +339,84 @@
   <section class="pricing" id="precos">
     <div class="container">
       <div class="pricing__header">
-        <div class="section-label reveal">Preços</div>
-        <h2 class="section-heading reveal d1">Investimento <em>transparente</em></h2>
-        <p class="section-desc reveal d2">Sem taxas escondidas. Sem surpresas. Escolha o plano ideal para o seu negócio.</p>
+        <div class="section-tag reveal">Preços Simples</div>
+        <h2 class="section-heading reveal d1">Sem surpresas. Sem <em>letras pequenas.</em></h2>
+        <p class="section-desc reveal d2">Paga uma vez, tem o seu website profissional durante um ano inteiro.</p>
       </div>
       <div class="pricing__grid">
-
         <div class="price-card reveal">
           <div class="price-card__tier">Starter</div>
           <div class="price-card__amount">€250</div>
           <div class="price-card__period">pagamento único</div>
-          <div class="price-card__blurb">Ideal para quem precisa de uma presença online profissional e eficaz.</div>
+          <div class="price-card__blurb">Uma página profissional com tudo o que precisa para começar a receber clientes online.</div>
           <ul class="price-card__features">
-            <li>Landing page profissional</li>
-            <li>Design responsivo</li>
+            <li>Website de uma página</li>
+            <li>Funciona no telemóvel e computador</li>
             <li>Formulário de contacto</li>
-            <li>Integração Google Maps</li>
+            <li>Mapa com a sua localização</li>
             <li>1 ano de alojamento incluído</li>
           </ul>
-          <a href="#contacto" class="btn btn--ghost">Começar</a>
+          <a href="#contacto" class="btn btn--white">Começar</a>
         </div>
-
-        <div class="price-card price-card--featured reveal d1">
-          <div class="price-card__badge">Mais Popular</div>
+        <div class="price-card price-card--pop reveal d1">
+          <div class="price-card__badge">Mais Escolhido</div>
           <div class="price-card__tier">Business</div>
           <div class="price-card__amount">€350</div>
           <div class="price-card__period">pagamento único</div>
-          <div class="price-card__blurb">Para negócios que querem uma presença completa e optimizada.</div>
+          <div class="price-card__blurb">Até 5 páginas para mostrar todos os seus serviços e aparecer no Google.</div>
           <ul class="price-card__features">
             <li>Até 5 páginas</li>
-            <li>Domínio incluído</li>
-            <li>Optimização SEO</li>
-            <li>Google Analytics</li>
-            <li>Galeria de fotos</li>
+            <li>Domínio incluído (ex: seusite.pt)</li>
+            <li>Apareça no topo do Google</li>
+            <li>Estatísticas de visitantes</li>
+            <li>Galeria de fotos dos seus trabalhos</li>
             <li>1 ano de alojamento incluído</li>
           </ul>
-          <a href="#contacto" class="btn btn--dark">Escolher Business</a>
+          <a href="#contacto" class="btn btn--blue">Escolher Business</a>
         </div>
-
         <div class="price-card reveal d2">
           <div class="price-card__tier">Premium</div>
           <div class="price-card__amount">€500</div>
           <div class="price-card__period">pagamento único</div>
-          <div class="price-card__blurb">A solução completa para o máximo impacto online.</div>
+          <div class="price-card__blurb">O pacote completo para quem quer o máximo de presença online.</div>
           <ul class="price-card__features">
             <li>Até 10 páginas</li>
-            <li>Sistema de reservas online</li>
-            <li>Integração newsletter</li>
-            <li>Blog integrado</li>
-            <li>Optimização de velocidade</li>
+            <li>Sistema de marcações online</li>
+            <li>Envio de newsletters aos clientes</li>
+            <li>Secção de notícias ou blog</li>
+            <li>Website ultra-rápido</li>
             <li>1 ano de alojamento incluído</li>
           </ul>
-          <a href="#contacto" class="btn btn--ghost">Escolher Premium</a>
+          <a href="#contacto" class="btn btn--white">Escolher Premium</a>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Reviews -->
+  <section class="reviews">
+    <div class="container">
+      <div class="section-tag reveal">O Que Dizem os Nossos Clientes</div>
+      <h2 class="section-heading reveal d1">Negócios reais, <em>resultados reais</em></h2>
+      <div class="reviews__grid">
+        <div class="review-card reveal">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">"Nunca pensei que fosse tão fácil ter um website profissional. Em menos de uma semana já estava online e a receber contactos."</p>
+          <div class="review-card__author">Nome do Cliente</div>
+          <div class="review-card__biz">Canalizador — Lisboa</div>
+        </div>
+        <div class="review-card reveal d1">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">"O melhor investimento que fiz no meu negócio. Os clientes agora encontram-me pelo Google e o site passa muita confiança."</p>
+          <div class="review-card__author">Nome do Cliente</div>
+          <div class="review-card__biz">Eletricista — Porto</div>
+        </div>
+        <div class="review-card reveal d2">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">"Fizeram tudo por mim — eu só tive de aprovar. O website ficou bonito, moderno e os meus clientes adoram."</p>
+          <div class="review-card__author">Nome do Cliente</div>
+          <div class="review-card__biz">Clínica Dentária — Braga</div>
+        </div>
       </div>
     </div>
   </section>
@@ -574,37 +424,25 @@
   <!-- Portfolio -->
   <section class="portfolio" id="portfolio">
     <div class="container">
-      <div class="section-label reveal">Portfólio</div>
+      <div class="section-tag reveal">Portfólio</div>
       <h2 class="section-heading reveal d1">Trabalhos <em>recentes</em></h2>
-      <p class="section-desc reveal d2">Estamos a construir o nosso portfólio. Em breve, os primeiros resultados.</p>
+      <p class="section-desc reveal d2">Estamos a construir o nosso portfólio com projetos reais. Em breve, aqui poderá ver exemplos.</p>
       <div class="portfolio__grid">
         <div class="folio-card reveal">
           <div class="folio-card__preview"><span class="folio-card__soon">Em breve</span></div>
-          <div class="folio-card__info">
-            <div class="folio-card__name">Projeto #1</div>
-            <div class="folio-card__type">Restauração</div>
-          </div>
+          <div class="folio-card__info"><div class="folio-card__name">Projeto #1</div><div class="folio-card__type">Restauração</div></div>
         </div>
         <div class="folio-card reveal d1">
           <div class="folio-card__preview"><span class="folio-card__soon">Em breve</span></div>
-          <div class="folio-card__info">
-            <div class="folio-card__name">Projeto #2</div>
-            <div class="folio-card__type">Clínica Dentária</div>
-          </div>
+          <div class="folio-card__info"><div class="folio-card__name">Projeto #2</div><div class="folio-card__type">Clínica Dentária</div></div>
         </div>
         <div class="folio-card reveal d2">
           <div class="folio-card__preview"><span class="folio-card__soon">Em breve</span></div>
-          <div class="folio-card__info">
-            <div class="folio-card__name">Projeto #3</div>
-            <div class="folio-card__type">Canalização</div>
-          </div>
+          <div class="folio-card__info"><div class="folio-card__name">Projeto #3</div><div class="folio-card__type">Canalização</div></div>
         </div>
         <div class="folio-card reveal d3">
           <div class="folio-card__preview"><span class="folio-card__soon">Em breve</span></div>
-          <div class="folio-card__info">
-            <div class="folio-card__name">Projeto #4</div>
-            <div class="folio-card__type">Auto Mecânica</div>
-          </div>
+          <div class="folio-card__info"><div class="folio-card__name">Projeto #4</div><div class="folio-card__type">Eletricidade</div></div>
         </div>
       </div>
     </div>
@@ -615,20 +453,16 @@
     <div class="container">
       <div class="about__inner">
         <div class="about__photo reveal">
-          <div class="about__photo-placeholder">
+          <div class="about__placeholder">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
             <span>Foto em breve</span>
           </div>
         </div>
         <div class="about__text">
-          <div class="section-label reveal">Sobre Nós</div>
-          <h2 class="section-heading reveal d1">A paixão por ajudar<br><em>negócios locais</em></h2>
-          <p class="reveal d2">
-            Acreditamos que cada negócio em Portugal merece uma presença online profissional. Muitas pequenas empresas têm um serviço excelente mas um website que não reflete a sua qualidade.
-          </p>
-          <p class="reveal d3">
-            Nós tomamos a iniciativa. Encontramos o seu negócio, criamos um redesign moderno com o seu conteúdo real, e mostramos-lhe o resultado. Sem compromisso, sem pressão — apenas bom design.
-          </p>
+          <div class="section-tag reveal">Sobre Nós</div>
+          <h2 class="section-heading reveal d1">Percebemos o seu <em>negócio</em></h2>
+          <p class="reveal d2">Sabemos que é um excelente profissional — canalizador, eletricista, dentista ou dono de um restaurante. O problema é que o seu website não mostra isso. Ou pior: nem sequer tem um.</p>
+          <p class="reveal d3">É por isso que existimos. Nós criamos websites que mostram a verdadeira qualidade do seu trabalho. E fazemos tudo por si — sem que tenha de perceber nada de tecnologia.</p>
           <div class="about__sig reveal d4">
             <div class="about__sig-name">Equipa WebPro</div>
             <div class="about__sig-role">Fundadores</div>
@@ -643,48 +477,42 @@
     <div class="container">
       <div class="contact__inner">
         <div class="contact__info">
-          <div class="section-label reveal">Contacto</div>
-          <h2 class="section-heading reveal d1">Vamos <em>conversar?</em></h2>
-          <p class="reveal d2">Tem perguntas ou quer saber mais? Envie-nos uma mensagem e respondemos em menos de 24 horas.</p>
+          <div class="section-tag reveal">Contacto</div>
+          <h2 class="section-heading reveal d1">Fale <em>connosco</em></h2>
+          <p class="reveal d2">Tem dúvidas? Quer saber mais? Ligue-nos ou envie uma mensagem. Respondemos em menos de 24 horas.</p>
           <div class="reveal d3">
             <div class="contact__line">
-              <div class="contact__line-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-              </div>
+              <div class="contact__line-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg></div>
+              <a href="tel:+351900000000" style="color:var(--ink);text-decoration:none">+351 900 000 000</a>
+            </div>
+            <div class="contact__line">
+              <div class="contact__line-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
               <span>info@webpro.pt</span>
             </div>
             <div class="contact__line">
-              <div class="contact__line-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
-              </div>
-              <span>+351 900 000 000</span>
-            </div>
-            <div class="contact__line">
-              <div class="contact__line-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-              </div>
+              <div class="contact__line-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
               <span>Portugal</span>
             </div>
           </div>
         </div>
-        <form class="contact__form reveal d1" onsubmit="event.preventDefault();alert('Obrigado pela sua mensagem! Entraremos em contacto em breve.');">
-          <div class="field">
-            <label for="name">Nome</label>
-            <input type="text" id="name" placeholder="O seu nome" required>
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="o.seu@email.pt" required>
-          </div>
-          <div class="field">
-            <label for="msg">Mensagem</label>
-            <textarea id="msg" placeholder="Conte-nos sobre o seu projeto..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn--dark">
-            Enviar Mensagem
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
-          </button>
+        <form class="contact__form reveal d1" onsubmit="event.preventDefault();alert('Obrigado! Entraremos em contacto em breve.');">
+          <div class="field"><label for="name">Nome</label><input type="text" id="name" placeholder="O seu nome" required></div>
+          <div class="field"><label for="email">Email</label><input type="email" id="email" placeholder="o.seu@email.pt" required></div>
+          <div class="field"><label for="phone">Telefone</label><input type="tel" id="phone" placeholder="+351 ..."></div>
+          <div class="field"><label for="msg">Mensagem</label><textarea id="msg" placeholder="Conte-nos sobre o seu negócio..." required></textarea></div>
+          <button type="submit" class="btn btn--blue">Enviar Mensagem</button>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__title reveal">Pronto para ter o website que o seu negócio merece?</div>
+      <div class="cta-banner__desc reveal d1">Orçamento grátis. Sem compromisso. Resultado em 7 dias.</div>
+      <div class="reveal d2">
+        <a href="#contacto" class="btn btn--white">Pedir Orçamento Grátis</a>
       </div>
     </div>
   </section>
@@ -693,7 +521,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <a href="#" class="footer__logo">WebPro</a>
+        <a href="#" class="footer__logo">Web<span>Pro</span></a>
         <ul class="footer__links">
           <li><a href="#processo">Como Funciona</a></li>
           <li><a href="#precos">Preços</a></li>
@@ -706,8 +534,6 @@
   </footer>
 
   <script>
-    const nav=document.getElementById('nav');
-    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60),{passive:true});
     const mt=document.getElementById('mobileToggle'),nl=document.getElementById('navLinks');
     mt.addEventListener('click',()=>nl.classList.toggle('open'));
     nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
