@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebPro — Estudio de Web Design em Portugal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0c0c0c;
+  --white: #f0efe9;
+  --amber: #c9a84c;
+  --card: #161616;
+  --border: #222;
+  --serif: 'Instrument Serif', serif;
+  --sans: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  transition: background 0.4s;
+}
+nav.scrolled {
+  background: rgba(12, 12, 12, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-cta {
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+  border: 1px solid var(--amber);
+  padding: 0.5rem 1.4rem;
+  border-radius: 2px;
+  transition: background 0.3s, color 0.3s, opacity 0.3s !important;
+}
+.nav-cta:hover {
+  background: var(--amber);
+  color: var(--black);
+}
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero > * { position: relative; z-index: 1; }
+.hero-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 2.5rem;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  max-width: 900px;
+}
+.hero-title span {
+  display: block;
+}
+.hero-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.55;
+  margin-bottom: 3rem;
+  max-width: 420px;
+}
+.btn-outline {
+  display: inline-block;
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  padding: 0.85rem 2.2rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  transition: background 0.3s, color 0.3s;
+  cursor: pointer;
+}
+.btn-outline:hover {
+  background: var(--amber);
+  color: var(--black);
+}
+
+/* ── PORTFOLIO ── */
+.portfolio {
+  padding: 8rem 3rem;
+}
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 3.5rem;
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.portfolio-card {
+  background: var(--card);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
+.portfolio-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 0 40px rgba(201, 168, 76, 0.06);
+}
+.card-preview {
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.card-preview-inner {
+  width: 140px;
+  height: 140px;
+  border: 1px dashed rgba(240, 239, 233, 0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.card-preview-inner::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border: 1px solid rgba(240, 239, 233, 0.04);
+  border-radius: 50%;
+}
+.card-preview-inner span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.25;
+}
+.card-preview .card-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+}
+.card-preview-inner { z-index: 1; }
+.card-info {
+  padding: 1.5rem 2rem 2rem;
+}
+.card-info h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 0.35rem;
+}
+.card-info p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  opacity: 0.4;
+}
+
+.portfolio-card:nth-child(1) .card-gradient {
+  background: linear-gradient(135deg, #0a1628 0%, #1a2a44 50%, #0d1a2e 100%);
+}
+.portfolio-card:nth-child(2) .card-gradient {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+.portfolio-card:nth-child(3) .card-gradient {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+}
+.portfolio-card:nth-child(4) .card-gradient {
+  background: linear-gradient(135deg, #1c1c0e 0%, #2a2a14 50%, #1c1c0e 100%);
+}
+
+/* ── SERVICES ── */
+.services {
+  padding: 8rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 5rem;
+  align-items: start;
+}
+.services-left h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.services-left p {
+  font-size: 0.95rem;
+  font-weight: 300;
+  opacity: 0.5;
+  line-height: 1.7;
+  max-width: 380px;
+}
+.pricing-row {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.pricing-row:first-child {
+  border-top: 1px solid var(--border);
+}
+.pricing-row.featured {
+  border-left: 3px solid var(--amber);
+  padding-left: 2rem;
+}
+.pricing-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+  white-space: nowrap;
+}
+.pricing-price {
+  font-size: 0.85rem;
+  font-weight: 300;
+  opacity: 0.4;
+}
+.pricing-features {
+  font-size: 0.85rem;
+  font-weight: 300;
+  opacity: 0.55;
+  line-height: 1.7;
+  text-align: right;
+}
+
+/* ── PROCESS ── */
+.process {
+  padding: 8rem 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.process .section-label { margin-bottom: 4rem; }
+.process-step {
+  padding: 3.5rem 0;
+  border-top: 1px solid rgba(201, 168, 76, 0.2);
+}
+.process-step:last-child {
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+}
+.step-number {
+  font-family: var(--serif);
+  font-size: 4rem;
+  color: var(--amber);
+  opacity: 0.25;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.step-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+}
+.step-desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  opacity: 0.45;
+  max-width: 550px;
+  line-height: 1.7;
+}
+
+/* ── TESTIMONIAL ── */
+.testimonial {
+  padding: 8rem 3rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 400px;
+}
+.testimonial-stars {
+  color: var(--amber);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 2rem;
+}
+.testimonial-slide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  padding: 0 1rem;
+}
+.testimonial-slide.active {
+  opacity: 1;
+}
+.testimonial-quote-mark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 5rem;
+  color: var(--amber);
+  opacity: 0.2;
+  line-height: 0.5;
+  margin-bottom: 1rem;
+}
+.testimonial-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.85;
+}
+.testimonial-author {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.testimonial-biz {
+  font-size: 0.8rem;
+  font-weight: 300;
+  opacity: 0.4;
+  margin-top: 0.25rem;
+}
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+}
+.testimonial-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--white);
+  opacity: 0.15;
+  transition: opacity 0.4s;
+  cursor: pointer;
+  border: none;
+}
+.testimonial-dot.active {
+  opacity: 0.7;
+  background: var(--amber);
+}
+
+/* ── CONTACT ── */
+.contact {
+  padding: 8rem 3rem;
+  text-align: center;
+}
+.contact h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+.contact-email {
+  display: inline-block;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 300;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(240, 239, 233, 0.2);
+  padding-bottom: 0.2rem;
+  transition: opacity 0.3s, border-color 0.3s;
+  margin-bottom: 0.5rem;
+}
+.contact-email:hover {
+  opacity: 1;
+  border-color: var(--amber);
+}
+.contact-location {
+  font-size: 0.85rem;
+  font-weight: 300;
+  opacity: 0.3;
+  margin-bottom: 4rem;
+}
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-form input,
+.contact-form textarea {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  padding: 1rem 1.2rem;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.3s;
+  resize: vertical;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(240, 239, 233, 0.25);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(201, 168, 76, 0.4);
+}
+.contact-form textarea {
+  min-height: 120px;
+}
+.btn-amber {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--black);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn-amber:hover {
+  background: #b8993f;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 300;
+  opacity: 0.4;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  opacity: 1;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+.footer-links a {
+  transition: opacity 0.3s;
+}
+.footer-links a:hover { opacity: 0.7; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 12, 12, 0.97);
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 99;
+  }
+  .nav-links.open a { font-size: 1.2rem; opacity: 1; }
+  .nav-toggle { display: flex; z-index: 101; }
+
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .card-preview { height: 300px; }
+
+  .services {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 6rem 1.5rem;
+  }
+  .pricing-row { flex-direction: column; gap: 0.8rem; }
+  .pricing-features { text-align: left; }
+
+  .portfolio, .process, .testimonial, .contact {
+    padding: 6rem 1.5rem;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-title { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+  .card-preview { height: 240px; }
+  .step-number { font-size: 3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">WebPro</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#portfolio">Trabalhos</a>
+    <a href="#servicos">Servicos</a>
+    <a href="#processo">Processo</a>
+    <a href="#contacto" class="nav-cta">Contactar</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label reveal">Estudio de Web Design</p>
+  <h1 class="hero-title reveal">
+    <span>Criamos websites</span>
+    <span>que os seus clientes</span>
+    <span>vao adorar</span>
+  </h1>
+  <p class="hero-sub reveal">Design moderno para negocios locais em Portugal. A partir de 250 euros.</p>
+  <a href="#portfolio" class="btn-outline reveal">Ver os nossos trabalhos</a>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <p class="section-label reveal">Trabalhos</p>
+  <div class="portfolio-grid">
+    <div class="portfolio-card reveal">
+      <div class="card-preview">
+        <div class="card-gradient"></div>
+        <div class="card-preview-inner"><span>Em breve</span></div>
+      </div>
+      <div class="card-info">
+        <h3>Restaurante Mar Azul</h3>
+        <p>Restauracao &middot; Lisboa</p>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="card-preview">
+        <div class="card-gradient"></div>
+        <div class="card-preview-inner"><span>Em breve</span></div>
+      </div>
+      <div class="card-info">
+        <h3>Clinica Sorrir</h3>
+        <p>Dentista &middot; Porto</p>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="card-preview">
+        <div class="card-gradient"></div>
+        <div class="card-preview-inner"><span>Em breve</span></div>
+      </div>
+      <div class="card-info">
+        <h3>Silva &amp; Filhos</h3>
+        <p>Canalizacao &middot; Braga</p>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="card-preview">
+        <div class="card-gradient"></div>
+        <div class="card-preview-inner"><span>Em breve</span></div>
+      </div>
+      <div class="card-info">
+        <h3>ElectroVaz</h3>
+        <p>Eletricidade &middot; Faro</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicos">
+  <div class="services-left reveal">
+    <p class="section-label">Servicos</p>
+    <h2>O que oferecemos</h2>
+    <p>Criamos websites profissionais que refletem a qualidade do seu negocio. Design limpo, rapido e otimizado para converter visitantes em clientes.</p>
+  </div>
+  <div class="services-right reveal">
+    <div class="pricing-row">
+      <div>
+        <div class="pricing-name">Starter</div>
+        <div class="pricing-price">A partir de 250 euros</div>
+      </div>
+      <div class="pricing-features">
+        Pagina unica responsiva<br>Formulario de contacto &middot; SEO basico
+      </div>
+    </div>
+    <div class="pricing-row featured">
+      <div>
+        <div class="pricing-name">Business</div>
+        <div class="pricing-price">A partir de 490 euros</div>
+      </div>
+      <div class="pricing-features">
+        Ate 5 paginas &middot; Design personalizado<br>Google Analytics &middot; Otimizacao de velocidade
+      </div>
+    </div>
+    <div class="pricing-row">
+      <div>
+        <div class="pricing-name">Premium</div>
+        <div class="pricing-price">A partir de 890 euros</div>
+      </div>
+      <div class="pricing-features">
+        Paginas ilimitadas &middot; E-commerce<br>Blog integrado &middot; Suporte prioritario
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="processo">
+  <p class="section-label reveal">Processo</p>
+  <div class="process-step reveal">
+    <div class="step-number">01</div>
+    <h3 class="step-title">Descoberta</h3>
+    <p class="step-desc">Conhecemos o seu negocio, os seus objetivos e o que o torna unico. Uma conversa simples para alinhar ideias e definir o caminho certo.</p>
+  </div>
+  <div class="process-step reveal">
+    <div class="step-number">02</div>
+    <h3 class="step-title">Construcao</h3>
+    <p class="step-desc">Desenhamos e desenvolvemos o seu website com atencao a cada detalhe. Codigo limpo, design moderno e uma experiencia pensada para os seus clientes.</p>
+  </div>
+  <div class="process-step reveal">
+    <div class="step-number">03</div>
+    <h3 class="step-title">Pre-visualizacao</h3>
+    <p class="step-desc">Apresentamos o resultado antes de publicar. Pode ver, testar e sugerir alteracoes ate ficar exatamente como imaginou.</p>
+  </div>
+  <div class="process-step reveal">
+    <div class="step-number">04</div>
+    <h3 class="step-title">Lancamento</h3>
+    <p class="step-desc">Depois da sua aprovacao, colocamos o website online. Tratamos de tudo: dominio, alojamento e configuracao. So tem de aprovar.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial" id="testemunhos">
+  <div class="testimonial-stars reveal">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+  <div class="testimonial-slides">
+    <div class="testimonial-slide active" data-index="0">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <p class="testimonial-text">Superaram todas as expectativas. O nosso website ficou moderno, rapido e os clientes adoram. Recomendo a qualquer negocio local.</p>
+      <p class="testimonial-author">Ana Ferreira</p>
+      <p class="testimonial-biz">Restaurante Mar Azul, Lisboa</p>
+    </div>
+    <div class="testimonial-slide" data-index="1">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <p class="testimonial-text">Profissionalismo do inicio ao fim. Entregaram o projeto no prazo e o resultado ficou muito acima do que esperava para o investimento.</p>
+      <p class="testimonial-author">Dr. Ricardo Sousa</p>
+      <p class="testimonial-biz">Clinica Sorrir, Porto</p>
+    </div>
+    <div class="testimonial-slide" data-index="2">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <p class="testimonial-text">Finalmente temos uma presenca online a altura da qualidade do nosso trabalho. Ja recebemos contactos novos so por causa do website.</p>
+      <p class="testimonial-author">Manuel Silva</p>
+      <p class="testimonial-biz">Silva &amp; Filhos, Braga</p>
+    </div>
+  </div>
+  <div class="testimonial-dots reveal">
+    <button class="testimonial-dot active" data-slide="0" aria-label="Testemunho 1"></button>
+    <button class="testimonial-dot" data-slide="1" aria-label="Testemunho 2"></button>
+    <button class="testimonial-dot" data-slide="2" aria-label="Testemunho 3"></button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <h2 class="reveal">Vamos conversar?</h2>
+  <a href="mailto:info@webpro.pt" class="contact-email reveal">info@webpro.pt</a>
+  <p class="contact-location reveal">Portugal</p>
+  <form class="contact-form reveal" onsubmit="event.preventDefault();">
+    <input type="text" placeholder="O seu nome" required>
+    <input type="email" placeholder="O seu email" required>
+    <textarea placeholder="A sua mensagem" required></textarea>
+    <button type="submit" class="btn-amber">Enviar mensagem</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">WebPro</span>
+  <span>&copy; 2026 WebPro. Todos os direitos reservados.</span>
+  <div class="footer-links">
+    <a href="#portfolio">Trabalhos</a>
+    <a href="#servicos">Servicos</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+// Testimonial carousel
+const slides = document.querySelectorAll('.testimonial-slide');
+const dots = document.querySelectorAll('.testimonial-dot');
+let currentSlide = 0;
+let interval;
+
+function showSlide(index) {
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[index].classList.add('active');
+  dots[index].classList.add('active');
+  currentSlide = index;
+}
+
+function nextSlide() {
+  showSlide((currentSlide + 1) % slides.length);
+}
+
+function startCarousel() {
+  interval = setInterval(nextSlide, 5000);
+}
+
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    clearInterval(interval);
+    showSlide(parseInt(dot.dataset.slide));
+    startCarousel();
+  });
+});
+
+startCarousel();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebPro — Websites Profissionais em Portugal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --blue: #1e40af;
+  --blue-dark: #1a3696;
+  --orange: #f97316;
+  --orange-hover: #ea6b10;
+  --light-blue: #eff6ff;
+  --white: #ffffff;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--gray-800);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background: var(--white);
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Animations ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Sticky Nav ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-200);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--blue);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--orange); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--gray-600);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--blue); }
+.btn-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  font-family: inherit;
+}
+.btn-orange:hover { background: var(--orange-hover); transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--blue);
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 2px solid var(--blue);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+.btn-secondary:hover { background: var(--blue); color: var(--white); }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--gray-800);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ── Hero ── */
+.hero {
+  padding: 140px 0 80px;
+  background: var(--white);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-headline {
+  font-size: 2.85rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--gray-900);
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+.hero-headline em {
+  font-style: normal;
+  color: var(--orange);
+}
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--gray-600);
+  margin-bottom: 32px;
+  max-width: 500px;
+  line-height: 1.7;
+}
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.hero-trust {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.hero-trust span { display: inline-flex; align-items: center; gap: 6px; }
+.hero-trust .check { color: #16a34a; font-weight: 700; }
+
+/* Browser mockups */
+.mockups { position: relative; }
+.mockup {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+}
+.mockup-before {
+  transform: rotate(-2deg) translateX(-10px);
+  position: relative;
+  z-index: 1;
+}
+.mockup-after {
+  transform: rotate(1deg) translateX(10px);
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+}
+.mockup-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+}
+.mockup-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gray-300);
+}
+.mockup-bar .mockup-dot:nth-child(1) { background: #f87171; }
+.mockup-bar .mockup-dot:nth-child(2) { background: #fbbf24; }
+.mockup-bar .mockup-dot:nth-child(3) { background: #34d399; }
+.mockup-label {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.mockup-before .mockup-label {
+  background: var(--gray-200);
+  color: var(--gray-500);
+}
+.mockup-after .mockup-label {
+  background: #dbeafe;
+  color: var(--blue);
+}
+.mockup-content { padding: 20px; }
+
+/* Before mockup content - ugly old style */
+.mockup-old {
+  filter: grayscale(60%) opacity(0.7);
+}
+.mockup-old .old-header {
+  background: linear-gradient(135deg, #7c7c7c, #999);
+  height: 28px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.mockup-old .old-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.mockup-old .old-nav span {
+  height: 10px;
+  background: #ccc;
+  border-radius: 2px;
+  flex: 1;
+}
+.mockup-old .old-body {
+  display: flex;
+  gap: 10px;
+}
+.mockup-old .old-sidebar {
+  width: 60px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  height: 80px;
+}
+.mockup-old .old-main { flex: 1; }
+.mockup-old .old-line {
+  height: 8px;
+  background: #ddd;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.mockup-old .old-line:nth-child(2) { width: 80%; }
+.mockup-old .old-line:nth-child(3) { width: 60%; }
+.mockup-old .old-box {
+  height: 30px;
+  background: #e8e8e8;
+  border-radius: 4px;
+  margin-top: 8px;
+  border: 1px dashed #bbb;
+}
+
+/* After mockup content - modern */
+.mockup-new .new-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.mockup-new .new-logo {
+  width: 50px;
+  height: 14px;
+  background: var(--blue);
+  border-radius: 3px;
+}
+.mockup-new .new-nav-dots {
+  display: flex;
+  gap: 10px;
+}
+.mockup-new .new-nav-dots span {
+  width: 28px;
+  height: 8px;
+  background: #dbeafe;
+  border-radius: 2px;
+}
+.mockup-new .new-hero-block {
+  background: linear-gradient(135deg, var(--blue), #3b82f6);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.mockup-new .new-hero-line {
+  height: 8px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.mockup-new .new-hero-line:nth-child(2) { width: 70%; }
+.mockup-new .new-hero-btn {
+  width: 60px;
+  height: 16px;
+  background: var(--orange);
+  border-radius: 4px;
+  margin-top: 8px;
+}
+.mockup-new .new-cards {
+  display: flex;
+  gap: 8px;
+}
+.mockup-new .new-card {
+  flex: 1;
+  background: var(--light-blue);
+  border-radius: 6px;
+  padding: 10px;
+}
+.mockup-new .new-card-icon {
+  width: 18px;
+  height: 18px;
+  background: var(--blue);
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+.mockup-new .new-card-line {
+  height: 5px;
+  background: #bfdbfe;
+  border-radius: 2px;
+  margin-bottom: 4px;
+}
+.mockup-new .new-card-line:last-child { width: 60%; }
+
+/* ── Social Proof Strip ── */
+.social-strip {
+  background: var(--blue);
+  padding: 24px 0;
+  text-align: center;
+}
+.social-strip p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+/* ── How it Works ── */
+.how-section {
+  padding: 100px 0;
+  background: var(--light-blue);
+}
+.section-tag {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--orange);
+  margin-bottom: 12px;
+  text-align: center;
+}
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--gray-900);
+  margin-bottom: 60px;
+  letter-spacing: -0.5px;
+}
+.steps {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 9%;
+  right: 9%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--orange));
+  z-index: 0;
+}
+.step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 12px;
+}
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--blue);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--blue);
+  margin-bottom: 20px;
+  position: relative;
+}
+.step:last-child .step-number {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+.step-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  line-height: 1.6;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+/* ── Pricing Table ── */
+.pricing-section {
+  padding: 100px 0;
+  background: var(--white);
+}
+.pricing-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.pricing-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.pricing-table thead th {
+  padding: 28px 20px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--gray-700);
+  border-bottom: 2px solid var(--gray-200);
+  vertical-align: bottom;
+}
+.pricing-table thead th:first-child {
+  text-align: left;
+  color: var(--gray-500);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.pricing-table .tier-name {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.pricing-table .tier-price {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--blue);
+}
+.pricing-table .tier-price small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+.pricing-table .col-highlight {
+  background: var(--light-blue);
+  border-top: 3px solid var(--blue);
+  position: relative;
+}
+.pricing-table .col-highlight .popular-tag {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.pricing-table tbody td {
+  padding: 14px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-600);
+}
+.pricing-table tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+.pricing-table tbody tr:hover { background: rgba(239,246,255,0.4); }
+.pricing-table .highlight-cell { background: var(--light-blue); }
+.pricing-table .icon-check {
+  color: #16a34a;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.pricing-table .icon-cross {
+  color: var(--gray-300);
+  font-size: 1.1rem;
+}
+.pricing-table tfoot td {
+  padding: 24px 20px;
+  text-align: center;
+  border-top: 2px solid var(--gray-200);
+}
+.pricing-table tfoot td:first-child { border-top: 2px solid var(--gray-200); }
+.pricing-table .highlight-cell-foot { background: var(--light-blue); }
+.btn-table {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+.btn-table-outline {
+  background: transparent;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+}
+.btn-table-outline:hover { background: var(--blue); color: var(--white); }
+.btn-table-primary {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn-table-primary:hover { background: var(--orange-hover); transform: translateY(-1px); }
+
+/* ── FAQ ── */
+.faq-section {
+  padding: 100px 0;
+  background: var(--light-blue);
+}
+.faq-list {
+  max-width: 740px;
+  margin: 0 auto;
+}
+.faq-item {
+  background: var(--white);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  text-align: left;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--blue); }
+.faq-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--light-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--blue);
+  transition: transform 0.3s, background 0.3s;
+  font-weight: 400;
+}
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: var(--blue);
+  color: var(--white);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-answer-inner {
+  padding: 0 24px 20px;
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+}
+
+/* ── Testimonials ── */
+.testimonials-section {
+  padding: 100px 0;
+  background: var(--white);
+}
+.testimonials-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-200) transparent;
+}
+.testimonials-track::-webkit-scrollbar { height: 6px; }
+.testimonials-track::-webkit-scrollbar-track { background: transparent; }
+.testimonials-track::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 3px; }
+.testi-card {
+  min-width: 350px;
+  flex: 1;
+  scroll-snap-align: start;
+  background: var(--light-blue);
+  border-radius: 14px;
+  padding: 32px;
+}
+.testi-stars {
+  color: #fbbf24;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+.testi-quote {
+  font-size: 1rem;
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.testi-author {
+  font-weight: 700;
+  color: var(--gray-900);
+  font-size: 0.95rem;
+}
+.testi-biz {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+/* ── Final CTA ── */
+.final-cta {
+  background: var(--orange);
+  padding: 80px 0;
+  text-align: center;
+}
+.final-cta h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.final-cta p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.1rem;
+  margin-bottom: 36px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  color: var(--orange);
+  padding: 16px 36px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+  font-family: inherit;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+/* ── Footer ── */
+.footer {
+  background: var(--gray-900);
+  padding: 40px 0;
+  text-align: center;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--white);
+  text-decoration: none;
+}
+.footer-logo span { color: var(--orange); }
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+.footer-links a {
+  color: var(--gray-400);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-copy {
+  color: var(--gray-500);
+  font-size: 0.8rem;
+}
+
+/* ── Mobile Nav ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px;
+  left: 0;
+  width: 100%;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 24px;
+  z-index: 999;
+}
+.mobile-menu.active { display: block; }
+.mobile-menu a {
+  display: block;
+  padding: 12px 0;
+  color: var(--gray-700);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+.mobile-menu a:last-child { border: none; }
+.mobile-menu .btn-orange {
+  width: 100%;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero-headline { font-size: 2.3rem; }
+  .hero-grid { gap: 40px; }
+  .section-title { font-size: 1.9rem; }
+  .final-cta h2 { font-size: 2rem; }
+  .steps::before { top: 32px; }
+  .step-number { width: 64px; height: 64px; font-size: 1.1rem; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .hero { padding: 110px 0 60px; }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-headline { font-size: 2rem; }
+  .hero-sub { font-size: 1rem; }
+  .hero-trust { flex-direction: column; gap: 8px; }
+
+  .mockups { max-width: 400px; margin: 0 auto; }
+
+  .steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+  .steps::before {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    width: 3px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+
+  .section-title { font-size: 1.7rem; margin-bottom: 40px; }
+  .pricing-wrapper { margin: 0 -24px; padding: 0 24px; }
+
+  .testi-card { min-width: 290px; padding: 24px; }
+
+  .final-cta h2 { font-size: 1.6rem; }
+  .final-cta p { font-size: 0.95rem; }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav" id="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">Web<span>Pro</span></a>
+    <ul class="nav-links">
+      <li><a href="#como-funciona">Como Funciona</a></li>
+      <li><a href="#precos">Precos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#testemunhos">Testemunhos</a></li>
+      <li><a href="#comecar" class="btn-orange">Comecar Agora</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#como-funciona">Como Funciona</a>
+    <a href="#precos">Precos</a>
+    <a href="#faq">FAQ</a>
+    <a href="#testemunhos">Testemunhos</a>
+    <a href="#comecar" class="btn-orange">Comecar Agora</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="reveal">
+        <h1 class="hero-headline">O seu website antigo esta a <em>custar-lhe clientes</em></h1>
+        <p class="hero-sub">97% dos consumidores pesquisam online antes de contactar um negocio local. Se o seu site nao impressiona em 3 segundos, o cliente vai para a concorrencia.</p>
+        <div class="hero-buttons">
+          <a href="#comecar" class="btn-orange">Ver o Que Podemos Fazer &rarr;</a>
+          <a href="#precos" class="btn-secondary">Ver Precos</a>
+        </div>
+        <div class="hero-trust">
+          <span><span class="check">&#10003;</span> Sem compromisso</span>
+          <span><span class="check">&#10003;</span> Orcamento gratis</span>
+          <span><span class="check">&#10003;</span> Pronto em 7 dias</span>
+        </div>
+      </div>
+      <div class="mockups reveal">
+        <div class="mockup mockup-before">
+          <div class="mockup-bar">
+            <span class="mockup-dot"></span>
+            <span class="mockup-dot"></span>
+            <span class="mockup-dot"></span>
+            <span class="mockup-label">Antes</span>
+          </div>
+          <div class="mockup-content mockup-old">
+            <div class="old-header"></div>
+            <div class="old-nav">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="old-body">
+              <div class="old-sidebar"></div>
+              <div class="old-main">
+                <div class="old-line"></div>
+                <div class="old-line"></div>
+                <div class="old-line"></div>
+                <div class="old-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup mockup-after">
+          <div class="mockup-bar">
+            <span class="mockup-dot"></span>
+            <span class="mockup-dot"></span>
+            <span class="mockup-dot"></span>
+            <span class="mockup-label">Depois</span>
+          </div>
+          <div class="mockup-content mockup-new">
+            <div class="new-header">
+              <div class="new-logo"></div>
+              <div class="new-nav-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="new-hero-block">
+              <div class="new-hero-line"></div>
+              <div class="new-hero-line"></div>
+              <div class="new-hero-btn"></div>
+            </div>
+            <div class="new-cards">
+              <div class="new-card">
+                <div class="new-card-icon"></div>
+                <div class="new-card-line"></div>
+                <div class="new-card-line"></div>
+              </div>
+              <div class="new-card">
+                <div class="new-card-icon"></div>
+                <div class="new-card-line"></div>
+                <div class="new-card-line"></div>
+              </div>
+              <div class="new-card">
+                <div class="new-card-icon"></div>
+                <div class="new-card-line"></div>
+                <div class="new-card-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Social Proof Strip ── -->
+<div class="social-strip reveal">
+  <div class="container">
+    <p>Websites profissionais para canalizadores, eletricistas, dentistas, restaurantes e mais de 20 tipos de negocios em Portugal</p>
+  </div>
+</div>
+
+<!-- ── How it Works ── -->
+<section class="how-section" id="como-funciona">
+  <div class="container">
+    <p class="section-tag reveal">Processo</p>
+    <h2 class="section-title reveal">Como funciona</h2>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-number">01</div>
+        <h3 class="step-title">Descobrir</h3>
+        <p class="step-desc">Diga-nos sobre o seu negocio, o que precisa e quais sao os seus objetivos.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">02</div>
+        <h3 class="step-title">Construir</h3>
+        <p class="step-desc">A nossa equipa cria o seu website profissional em apenas alguns dias.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">03</div>
+        <h3 class="step-title">Pre-visualizar</h3>
+        <p class="step-desc">Recebe uma pre-visualizacao completa para rever antes de publicar.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">04</div>
+        <h3 class="step-title">Aprovar</h3>
+        <p class="step-desc">Aprove o resultado e o seu novo site fica online imediatamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pricing Table ── -->
+<section class="pricing-section" id="precos">
+  <div class="container">
+    <p class="section-tag reveal">Precos</p>
+    <h2 class="section-title reveal">Planos simples, sem surpresas</h2>
+    <div class="pricing-wrapper reveal">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Funcionalidades</th>
+            <th>
+              <span class="tier-name">Starter</span>
+              <span class="tier-price">&euro;250 <small>unico</small></span>
+            </th>
+            <th class="col-highlight">
+              <span class="popular-tag">Mais popular</span>
+              <span class="tier-name">Business</span>
+              <span class="tier-price">&euro;350 <small>unico</small></span>
+            </th>
+            <th>
+              <span class="tier-name">Premium</span>
+              <span class="tier-price">&euro;500 <small>unico</small></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>N.&ordm; de paginas</td>
+            <td>1</td>
+            <td class="highlight-cell"><strong>5</strong></td>
+            <td><strong>10</strong></td>
+          </tr>
+          <tr>
+            <td>Design responsivo</td>
+            <td><span class="icon-check">&#10003;</span></td>
+            <td class="highlight-cell"><span class="icon-check">&#10003;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Formulario de contacto</td>
+            <td><span class="icon-check">&#10003;</span></td>
+            <td class="highlight-cell"><span class="icon-check">&#10003;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Google Maps</td>
+            <td><span class="icon-check">&#10003;</span></td>
+            <td class="highlight-cell"><span class="icon-check">&#10003;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Dominio personalizado</td>
+            <td><span class="icon-cross">&times;</span></td>
+            <td class="highlight-cell"><span class="icon-check">&#10003;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Aparecer no Google (SEO)</td>
+            <td><span class="icon-cross">&times;</span></td>
+            <td class="highlight-cell"><span class="icon-check">&#10003;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Estatisticas de visitas</td>
+            <td><span class="icon-cross">&times;</span></td>
+            <td class="highlight-cell"><span class="icon-check">&#10003;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Galeria de fotos</td>
+            <td><span class="icon-cross">&times;</span></td>
+            <td class="highlight-cell"><span class="icon-check">&#10003;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Marcacoes online</td>
+            <td><span class="icon-cross">&times;</span></td>
+            <td class="highlight-cell"><span class="icon-cross">&times;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Newsletter</td>
+            <td><span class="icon-cross">&times;</span></td>
+            <td class="highlight-cell"><span class="icon-cross">&times;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Blog</td>
+            <td><span class="icon-cross">&times;</span></td>
+            <td class="highlight-cell"><span class="icon-cross">&times;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Velocidade optimizada</td>
+            <td><span class="icon-cross">&times;</span></td>
+            <td class="highlight-cell"><span class="icon-cross">&times;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Alojamento 1 ano</td>
+            <td><span class="icon-check">&#10003;</span></td>
+            <td class="highlight-cell"><span class="icon-check">&#10003;</span></td>
+            <td><span class="icon-check">&#10003;</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td><a href="#comecar" class="btn-table btn-table-outline">Escolher</a></td>
+            <td class="highlight-cell-foot"><a href="#comecar" class="btn-table btn-table-primary">Escolher</a></td>
+            <td><a href="#comecar" class="btn-table btn-table-outline">Escolher</a></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <p class="section-tag reveal">Perguntas Frequentes</p>
+    <h2 class="section-title reveal">Tudo o que precisa de saber</h2>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Quanto tempo demora a ter o meu website pronto?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Em media, o seu website fica pronto em 5 a 7 dias uteis apos recebermos toda a informacao necessaria. Para projetos mais simples, pode ser ainda mais rapido.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Preciso de saber programar ou ter conhecimentos tecnicos?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">De modo algum. Nos tratamos de tudo, desde o design ate a parte tecnica. So precisa de nos dizer o que pretende e nos fazemos o resto. Apos a entrega, alteracoes simples de conteudo sao faceis de fazer.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>O que acontece apos o primeiro ano de alojamento?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Apos o primeiro ano incluido, o alojamento e renovado a um custo reduzido anual. Avisamos sempre com antecedencia e nunca ha renovacoes surpresa. O website e dominio sao sempre seus.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Posso ver o website antes de pagar?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sim. Oferecemos uma pre-visualizacao completa do website antes de qualquer pagamento final. So avancamos quando estiver 100% satisfeito com o resultado.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Como funciona o processo do inicio ao fim?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">E simples: primeiro, recolhemos informacoes sobre o seu negocio. Depois, criamos o design e o conteudo. Enviamos-lhe uma pre-visualizacao para aprovacao. Apos a sua confirmacao, publicamos o site e entregamos tudo configurado.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Que tipo de negocios servem?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Trabalhamos com todo o tipo de negocios locais: canalizadores, eletricistas, dentistas, clinicas, restaurantes, cafes, lojas, saloes de beleza, advogados, contabilistas e muitos mais. Se tem um negocio, nos criamos o website ideal para si.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Testimonials ── -->
+<section class="testimonials-section" id="testemunhos">
+  <div class="container">
+    <p class="section-tag reveal">Testemunhos</p>
+    <h2 class="section-title reveal">O que dizem os nossos clientes</h2>
+    <div class="testimonials-track reveal">
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"Em menos de uma semana tinha um site profissional que ja me trouxe novos clientes. O investimento pagou-se no primeiro mes."</p>
+        <p class="testi-author">Ricardo Mendes</p>
+        <p class="testi-biz">Canalizador &mdash; Lisboa</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"Finalmente tenho um website que me orgulho de mostrar aos meus pacientes. A equipa tratou de tudo, nao precisei de fazer nada."</p>
+        <p class="testi-author">Dra. Ana Ferreira</p>
+        <p class="testi-biz">Clinica Dentaria &mdash; Porto</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-quote">"As reservas online aumentaram 40% desde que lancamos o novo site. Simples, rapido e com um resultado excelente."</p>
+        <p class="testi-author">Maria Santos</p>
+        <p class="testi-biz">Restaurante &mdash; Braga</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Final CTA ── -->
+<section class="final-cta" id="comecar">
+  <div class="container reveal">
+    <h2>Pronto para deixar de perder clientes?</h2>
+    <p>Junte-se a centenas de negocios portugueses que ja transformaram a sua presenca online. Orcamento gratis, sem compromisso.</p>
+    <a href="#" class="btn-white">Comecar o Meu Website &rarr;</a>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="#" class="footer-logo">Web<span>Pro</span></a>
+    <ul class="footer-links">
+      <li><a href="#como-funciona">Como Funciona</a></li>
+      <li><a href="#precos">Precos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#testemunhos">Testemunhos</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 WebPro. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('active');
+});
+// Close mobile menu on link click
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+});
+
+// Scroll reveal with IntersectionObserver
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(faq => {
+      faq.classList.remove('open');
+      faq.querySelector('.faq-answer').style.maxHeight = null;
+    });
+
+    // Open clicked if it was closed
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+</script>
+</body>
+</html>

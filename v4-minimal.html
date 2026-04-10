@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebPro — Websites para negócios locais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --blue: #2563eb;
+  --light: #e5e5e5;
+  --font: 'Space Grotesk', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+nav .logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--black);
+}
+
+nav .nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--black);
+  transition: color 0.2s;
+}
+
+nav .nav-link:hover {
+  color: var(--blue);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 3rem;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  max-width: 900px;
+}
+
+.hero p {
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  color: var(--black);
+  opacity: 0.6;
+}
+
+.hero .btn {
+  margin-top: 2.5rem;
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.hero .btn:hover {
+  opacity: 0.85;
+}
+
+/* SECTION SPACING */
+section {
+  padding: 6rem 3rem;
+}
+
+/* BENTO GRID */
+.bento {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 0;
+}
+
+.bento-cell {
+  border: 1px solid var(--black);
+  padding: 2.5rem;
+  margin: -0.5px;
+  transition: background 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bento-cell:hover {
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.bento-cell.large {
+  grid-column: span 2;
+}
+
+.bento-cell .big-number {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.bento-cell .big-number.blue {
+  color: var(--blue);
+}
+
+.bento-cell h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.bento-cell .cell-text {
+  font-size: 0.95rem;
+  font-weight: 400;
+  opacity: 0.6;
+  line-height: 1.5;
+}
+
+.bento-cell .cell-label {
+  font-size: 0.95rem;
+  font-weight: 400;
+  opacity: 0.6;
+  margin-top: 0.5rem;
+}
+
+/* PROCESS */
+.process {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 3rem;
+}
+
+.process-step {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--light);
+}
+
+.process-step:last-child {
+  border-bottom: none;
+}
+
+.step-number {
+  font-size: clamp(6rem, 12vw, 10rem);
+  font-weight: 700;
+  color: var(--light);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.step-content {
+  position: relative;
+  z-index: 1;
+  max-width: 550px;
+}
+
+.step-content h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.step-content p {
+  font-size: 1.05rem;
+  font-weight: 400;
+  opacity: 0.6;
+  line-height: 1.6;
+}
+
+/* PRICING */
+.pricing {
+  padding: 6rem 0;
+}
+
+.pricing-heading {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 3rem;
+  padding: 0 3rem;
+}
+
+.pricing-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 0 3rem 2rem;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pricing-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.pricing-card {
+  flex: 0 0 340px;
+  border: 1px solid var(--black);
+  padding: 2.5rem;
+  scroll-snap-align: start;
+  position: relative;
+  background: var(--white);
+}
+
+.pricing-card.recommended {
+  border-top: 4px solid var(--blue);
+}
+
+.pricing-card .badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--blue);
+  letter-spacing: 0.05em;
+}
+
+.pricing-card .tier {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.pricing-card .price {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-card .price-note {
+  font-size: 0.85rem;
+  opacity: 0.5;
+  margin-bottom: 2rem;
+}
+
+.pricing-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pricing-card ul li {
+  font-size: 0.95rem;
+  font-weight: 400;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.pricing-card ul li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--blue);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.55rem;
+}
+
+/* PORTFOLIO */
+.portfolio {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.portfolio-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 3rem;
+}
+
+.portfolio-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--light);
+  transition: background 0.3s;
+  cursor: default;
+}
+
+.portfolio-item:last-child {
+  border-bottom: 1px solid var(--light);
+}
+
+.portfolio-item:hover {
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.portfolio-name {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.portfolio-type {
+  font-size: 0.85rem;
+  font-weight: 400;
+  opacity: 0.5;
+  margin-top: 0.25rem;
+}
+
+.portfolio-tag {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.4;
+  white-space: nowrap;
+}
+
+/* CONTACT */
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-inner {
+  width: 100%;
+  max-width: 500px;
+}
+
+.contact-inner h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.contact-inner .email-link {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 500;
+  color: var(--blue);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 3rem;
+  transition: opacity 0.2s;
+}
+
+.contact-inner .email-link:hover {
+  opacity: 0.7;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  border: 1px solid var(--black);
+  background: var(--white);
+  color: var(--black);
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--black);
+  opacity: 0.35;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--blue);
+}
+
+.contact-form button {
+  padding: 1rem;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.contact-form button:hover {
+  opacity: 0.85;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 3rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  opacity: 0.4;
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav {
+    padding: 1.25rem 1.5rem;
+  }
+
+  section {
+    padding: 4rem 1.5rem;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-cell.large {
+    grid-column: span 1;
+  }
+
+  .process {
+    padding: 2rem 1.5rem;
+  }
+
+  .process-step {
+    min-height: 50vh;
+    padding: 3rem 0;
+  }
+
+  .step-number {
+    font-size: 5rem;
+    position: static;
+    transform: none;
+    margin-bottom: 1rem;
+  }
+
+  .pricing-card {
+    flex: 0 0 300px;
+  }
+
+  .pricing {
+    padding: 4rem 0;
+  }
+
+  .pricing-scroll {
+    padding: 0 1.5rem 2rem;
+  }
+
+  .portfolio {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .portfolio-heading {
+    padding: 0 1.5rem;
+  }
+
+  .portfolio-item {
+    padding: 1.5rem;
+  }
+
+  .contact {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 901px) {
+  .pricing-scroll {
+    justify-content: center;
+    overflow-x: visible;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">WebPro</a>
+  <a href="#contacto" class="nav-link">Contacto</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Websites para negócios locais.</h1>
+  <p>A partir de &euro;250. Pronto em 7 dias. Portugal.</p>
+  <a href="#contacto" class="btn">Começar</a>
+</section>
+
+<!-- BENTO GRID -->
+<section class="bento">
+  <div class="bento-grid">
+    <div class="bento-cell large reveal">
+      <h3>O seu negócio merece ser encontrado online</h3>
+      <span class="cell-text">97% dos consumidores procuram negócios locais na internet. Se não está online, não existe para os seus clientes.</span>
+    </div>
+    <div class="bento-cell reveal">
+      <span class="big-number">7 dias</span>
+      <span class="cell-label">do pedido ao site pronto</span>
+    </div>
+    <div class="bento-cell reveal">
+      <span class="big-number blue">&euro;250</span>
+      <span class="cell-label">investimento inicial</span>
+    </div>
+    <div class="bento-cell large reveal">
+      <h3>Nós fazemos tudo por si</h3>
+      <span class="cell-text">Encontramo-lo, construímos o seu site, mostramos o resultado. Sem complicações, sem stress. Um modelo proativo feito para quem não tem tempo a perder.</span>
+    </div>
+    <div class="bento-cell reveal">
+      <span class="big-number">100%</span>
+      <span class="cell-label">satisfação</span>
+    </div>
+    <div class="bento-cell reveal">
+      <span class="big-number">0&euro;</span>
+      <span class="cell-label">para ver o resultado</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-step reveal">
+    <span class="step-number">01</span>
+    <div class="step-content">
+      <h3>Identificamos o seu negócio</h3>
+      <p>Pesquisamos negócios locais que ainda não têm presença online. Se o encontrámos, é porque os seus clientes também o procuram — mas não o encontram.</p>
+    </div>
+  </div>
+  <div class="process-step reveal">
+    <span class="step-number">02</span>
+    <div class="step-content">
+      <h3>Criamos o seu site</h3>
+      <p>Sem esperar pela sua aprovação inicial, construímos uma proposta real. Um site completo, profissional, pronto a funcionar. Feito a pensar no seu negócio.</p>
+    </div>
+  </div>
+  <div class="process-step reveal">
+    <span class="step-number">03</span>
+    <div class="step-content">
+      <h3>Mostramos o resultado</h3>
+      <p>Apresentamos o site pronto. Sem compromisso, sem custos. Só paga se gostar. Se não gostar, não paga nada. Simples.</p>
+    </div>
+  </div>
+  <div class="process-step reveal">
+    <span class="step-number">04</span>
+    <div class="step-content">
+      <h3>Lançamos e acompanhamos</h3>
+      <p>Colocamos o site online e garantimos que tudo funciona. Acompanhamento contínuo para que o seu negócio cresça na internet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <h2 class="pricing-heading reveal">Planos simples, sem surpresas.</h2>
+  <div class="pricing-scroll">
+    <div class="pricing-card reveal">
+      <span class="tier">Essencial</span>
+      <div class="price">&euro;250</div>
+      <div class="price-note">pagamento único</div>
+      <ul>
+        <li>Site de uma página</li>
+        <li>Design responsivo</li>
+        <li>Formulário de contacto</li>
+        <li>Otimização básica SEO</li>
+        <li>Entrega em 7 dias</li>
+      </ul>
+    </div>
+    <div class="pricing-card recommended reveal">
+      <span class="badge">Recomendado</span>
+      <span class="tier">Negócio</span>
+      <div class="price">&euro;450</div>
+      <div class="price-note">pagamento único</div>
+      <ul>
+        <li>Site até 5 páginas</li>
+        <li>Design responsivo premium</li>
+        <li>Formulário de contacto</li>
+        <li>Otimização SEO avançada</li>
+        <li>Google Maps integrado</li>
+        <li>Entrega em 7 dias</li>
+      </ul>
+    </div>
+    <div class="pricing-card reveal">
+      <span class="tier">Profissional</span>
+      <div class="price">&euro;750</div>
+      <div class="price-note">pagamento único</div>
+      <ul>
+        <li>Site até 10 páginas</li>
+        <li>Design totalmente personalizado</li>
+        <li>Blog integrado</li>
+        <li>SEO completo</li>
+        <li>Integração redes sociais</li>
+        <li>Suporte prioritário 30 dias</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio">
+  <h2 class="portfolio-heading reveal">Projetos</h2>
+  <div class="portfolio-item reveal">
+    <div>
+      <div class="portfolio-name">Café Central</div>
+      <div class="portfolio-type">Restauração</div>
+    </div>
+    <span class="portfolio-tag">Em breve</span>
+  </div>
+  <div class="portfolio-item reveal">
+    <div>
+      <div class="portfolio-name">Clínica Saúde+</div>
+      <div class="portfolio-type">Saúde e Bem-estar</div>
+    </div>
+    <span class="portfolio-tag">Em breve</span>
+  </div>
+  <div class="portfolio-item reveal">
+    <div>
+      <div class="portfolio-name">Auto Ribeiro</div>
+      <div class="portfolio-type">Oficina Automóvel</div>
+    </div>
+    <span class="portfolio-tag">Em breve</span>
+  </div>
+  <div class="portfolio-item reveal">
+    <div>
+      <div class="portfolio-name">Padaria São João</div>
+      <div class="portfolio-type">Padaria e Pastelaria</div>
+    </div>
+    <span class="portfolio-tag">Em breve</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="contact-inner">
+    <h2 class="reveal">Contacto</h2>
+    <a href="mailto:info@webpro.pt" class="email-link reveal">info@webpro.pt</a>
+    <form class="contact-form reveal" onsubmit="event.preventDefault();">
+      <input type="text" placeholder="Nome" required>
+      <input type="email" placeholder="Email" required>
+      <textarea rows="4" placeholder="Mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>&copy; 2026 WebPro</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+  reveals.forEach(function (el) {
+    observer.observe(el);
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebPro — Websites Profissionais para o Seu Negócio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #fefcf9;
+            --green: #166534;
+            --cream: #fef9ef;
+            --coral: #fb7185;
+            --dark: #1a1a1a;
+            --green-light: #dcfce7;
+            --radius: 20px;
+            --radius-sm: 14px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ─── Scroll Reveal ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(254, 252, 249, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .nav-logo .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .nav-cta {
+            background: var(--green);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(22,101,52,0.3);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .hero-quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 2.6rem;
+            line-height: 1.35;
+            color: var(--dark);
+            max-width: 780px;
+            margin: 0 auto 32px;
+            position: relative;
+        }
+
+        .hero-quote::before {
+            content: '\201C';
+            font-size: 5rem;
+            color: var(--green);
+            position: absolute;
+            top: -30px;
+            left: -10px;
+            opacity: 0.3;
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .hero-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .hero-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+
+        .hero-stars .star {
+            color: var(--green);
+            font-size: 1.2rem;
+        }
+
+        .hero-author-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .hero-author-role {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #555;
+            max-width: 560px;
+            margin: 40px auto 36px;
+            font-weight: 500;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(22,101,52,0.3);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--dark);
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            border: 2px solid #ddd;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* ─── RESULTS STRIP ─── */
+        .results-strip {
+            background: var(--green);
+            padding: 48px 0;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .result-item {
+            color: #fff;
+        }
+
+        .result-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .result-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        /* ─── PROCESS TIMELINE ─── */
+        .process {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--green);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.05rem;
+            max-width: 520px;
+            margin: 0 auto 60px;
+            font-weight: 500;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 640px;
+            margin: 0 auto;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--green), rgba(22,101,52,0.15));
+            border-radius: 3px;
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 56px;
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -48px;
+            top: 6px;
+            width: 18px;
+            height: 18px;
+            background: var(--green);
+            border-radius: 50%;
+            border: 4px solid var(--cream);
+            box-shadow: 0 0 0 3px var(--green);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .timeline-step.visible .timeline-dot {
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 3px var(--green); }
+            50% { box-shadow: 0 0 0 8px rgba(22,101,52,0.2); }
+        }
+
+        .timeline-number {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: #555;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.65;
+        }
+
+        .timeline-step:nth-child(even) {
+            transform: translateX(24px);
+        }
+
+        /* ─── TESTIMONIALS MASONRY ─── */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .masonry {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .masonry-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 32px;
+            border-left: 4px solid var(--green);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .masonry-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        }
+
+        .masonry-card.large {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .masonry-card.small {
+            padding: 24px;
+        }
+
+        .masonry-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 14px;
+            color: var(--green);
+            font-size: 1rem;
+        }
+
+        .masonry-quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.55;
+            margin-bottom: 18px;
+            color: var(--dark);
+        }
+
+        .masonry-card.large .masonry-quote {
+            font-size: 1.3rem;
+        }
+
+        .masonry-card.small .masonry-quote {
+            font-size: 1rem;
+        }
+
+        .masonry-author {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .masonry-role {
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* ─── PRICING ─── */
+        .pricing {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .pricing-stack {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 0;
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            width: 300px;
+            position: relative;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            flex-shrink: 0;
+        }
+
+        .pricing-card:nth-child(1) {
+            transform: rotate(-2deg) translateX(20px);
+            z-index: 1;
+        }
+
+        .pricing-card:nth-child(2) {
+            transform: translateY(-20px) scale(1.05);
+            z-index: 3;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            border: 2px solid var(--green);
+        }
+
+        .pricing-card:nth-child(3) {
+            transform: rotate(2deg) translateX(-20px);
+            z-index: 1;
+        }
+
+        .pricing-card:hover {
+            z-index: 4;
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--coral);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 5px 18px;
+            border-radius: 50px;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-emoji {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .pricing-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--green);
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #999;
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .pricing-features li {
+            padding: 6px 0;
+            font-size: 0.92rem;
+            font-weight: 500;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #444;
+        }
+
+        .pricing-features li .check {
+            color: var(--green);
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .pricing-btn-primary {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .pricing-btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(22,101,52,0.3);
+        }
+
+        .pricing-btn-outline {
+            background: transparent;
+            color: var(--green);
+            border: 2px solid var(--green);
+        }
+
+        .pricing-btn-outline:hover {
+            background: var(--green);
+            color: #fff;
+        }
+
+        /* ─── ABOUT / TEAM ─── */
+        .about {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 720px;
+            margin: 0 auto 40px;
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-light), #bbf7d0);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .team-name {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .team-role {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .about-text {
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            color: #555;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        /* ─── CONTACT ─── */
+        .contact {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: flex-start;
+        }
+
+        .contact-left h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.25;
+        }
+
+        .contact-left p {
+            color: #555;
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 16px 20px;
+            border: 2px solid #e8e5e0;
+            border-radius: var(--radius-sm);
+            background: var(--cream);
+            color: var(--dark);
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--green);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #aaa;
+        }
+
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--green);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(22,101,52,0.3);
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: 600;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 56px 0 36px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .footer-logo .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+        }
+
+        .footer-heart {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+        }
+
+        /* ─── MOBILE NAV ─── */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            z-index: 99;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 0;
+        }
+
+        .mobile-menu .nav-cta {
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .pricing-stack {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .pricing-card:nth-child(1),
+            .pricing-card:nth-child(2),
+            .pricing-card:nth-child(3) {
+                transform: none;
+            }
+
+            .pricing-card:nth-child(2) {
+                transform: scale(1.03);
+            }
+
+            .pricing-card {
+                width: 100%;
+                max-width: 380px;
+            }
+
+            .pricing-card:hover {
+                transform: translateY(-4px) scale(1.02);
+            }
+
+            .masonry {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .masonry-card.large {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 130px 0 72px;
+            }
+
+            .hero-quote {
+                font-size: 1.7rem;
+            }
+
+            .hero-quote::before {
+                font-size: 3.5rem;
+                top: -20px;
+                left: 0;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 28px 16px;
+            }
+
+            .result-number {
+                font-size: 1.9rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .process, .testimonials, .pricing, .about, .contact {
+                padding: 72px 0;
+            }
+
+            .timeline {
+                padding-left: 48px;
+            }
+
+            .timeline::before {
+                left: 14px;
+            }
+
+            .timeline-dot {
+                left: -41px;
+                width: 14px;
+                height: 14px;
+            }
+
+            .timeline-step:nth-child(even) {
+                transform: translateX(0);
+            }
+
+            .masonry {
+                grid-template-columns: 1fr;
+            }
+
+            .masonry-card.large {
+                grid-column: span 1;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                max-width: 240px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-left h2 {
+                font-size: 1.7rem;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+    <div class="container nav-inner">
+        <a href="#" class="nav-logo"><span class="dot"></span>WebPro</a>
+        <ul class="nav-links">
+            <li><a href="#processo">Como Funciona</a></li>
+            <li><a href="#testemunhos">Testemunhos</a></li>
+            <li><a href="#precos">Preços</a></li>
+            <li><a href="#contacto" class="nav-cta">Pedir Orçamento</a></li>
+        </ul>
+        <button class="nav-hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu">
+        <a href="#processo" onclick="this.parentElement.classList.remove('open')">Como Funciona</a>
+        <a href="#testemunhos" onclick="this.parentElement.classList.remove('open')">Testemunhos</a>
+        <a href="#precos" onclick="this.parentElement.classList.remove('open')">Preços</a>
+        <a href="#contacto" class="nav-cta" onclick="this.parentElement.classList.remove('open')">Pedir Orçamento</a>
+    </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+    <div class="container">
+        <div class="reveal">
+            <p class="hero-quote">"Em menos de uma semana tinha um website profissional. Já recebi 15 contactos novos no primeiro mês."</p>
+            <div class="hero-author">
+                <div class="hero-stars">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
+                <span class="hero-author-name">Ricardo Mendes</span>
+                <span class="hero-author-role">Canalizador — Lisboa</span>
+            </div>
+        </div>
+        <div class="reveal">
+            <p class="hero-subtitle">Junte-se a dezenas de negócios em Portugal que já transformaram a sua presença online.</p>
+            <div class="hero-actions">
+                <a href="#contacto" class="btn-primary">Quero o Mesmo Resultado</a>
+                <a href="#processo" class="btn-secondary">Ver Como Funciona</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── RESULTS STRIP ─── -->
+<section class="results-strip">
+    <div class="container">
+        <div class="results-grid">
+            <div class="result-item reveal">
+                <div class="result-number">50+</div>
+                <div class="result-label">websites entregues</div>
+            </div>
+            <div class="result-item reveal">
+                <div class="result-number">7 dias</div>
+                <div class="result-label">em média</div>
+            </div>
+            <div class="result-item reveal">
+                <div class="result-number">100%</div>
+                <div class="result-label">de satisfação</div>
+            </div>
+            <div class="result-item reveal">
+                <div class="result-number">0</div>
+                <div class="result-label">clientes insatisfeitos</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── PROCESS TIMELINE ─── -->
+<section class="process" id="processo">
+    <div class="container">
+        <p class="section-label reveal">Como Funciona</p>
+        <h2 class="section-title reveal">Do primeiro contacto ao website pronto</h2>
+        <p class="section-subtitle reveal">Um processo simples e transparente, sem surpresas.</p>
+
+        <div class="timeline">
+            <div class="timeline-step reveal">
+                <div class="timeline-dot"></div>
+                <p class="timeline-number">Passo 01</p>
+                <h3 class="timeline-title">Conversa Inicial</h3>
+                <p class="timeline-desc">Conte-nos sobre o seu negócio, os seus objetivos e o que precisa. Nós ouvimos primeiro, propomos depois. Sem compromisso.</p>
+            </div>
+            <div class="timeline-step reveal">
+                <div class="timeline-dot"></div>
+                <p class="timeline-number">Passo 02</p>
+                <h3 class="timeline-title">Proposta e Design</h3>
+                <p class="timeline-desc">Criamos uma proposta personalizada com um layout pensado para o seu público. Mostramos-lhe o design antes de avançar.</p>
+            </div>
+            <div class="timeline-step reveal">
+                <div class="timeline-dot"></div>
+                <p class="timeline-number">Passo 03</p>
+                <h3 class="timeline-title">Desenvolvimento</h3>
+                <p class="timeline-desc">Construímos o seu website com as melhores práticas de performance, SEO e design responsivo. Acompanhe cada etapa.</p>
+            </div>
+            <div class="timeline-step reveal">
+                <div class="timeline-dot"></div>
+                <p class="timeline-number">Passo 04</p>
+                <h3 class="timeline-title">Lançamento</h3>
+                <p class="timeline-desc">Publicamos o seu website e garantimos que tudo funciona na perfeição. Depois, ficamos por perto para o que precisar.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── TESTIMONIALS MASONRY ─── -->
+<section class="testimonials" id="testemunhos">
+    <div class="container">
+        <p class="section-label reveal">Testemunhos</p>
+        <h2 class="section-title reveal">O que dizem os nossos clientes</h2>
+        <p class="section-subtitle reveal">Histórias reais de negócios reais em Portugal.</p>
+
+        <div class="masonry">
+            <div class="masonry-card large reveal">
+                <div class="masonry-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="masonry-quote">"Tinha receio de investir num website, mas a equipa da WebPro tornou tudo tão simples. O resultado superou completamente as minhas expectativas. Recomendo a todos os colegas de profissão."</p>
+                <p class="masonry-author">Carlos Ferreira</p>
+                <p class="masonry-role">Eletricista — Porto</p>
+            </div>
+            <div class="masonry-card reveal">
+                <div class="masonry-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="masonry-quote">"Os meus pacientes agora marcam consultas online. Poupamos tempo e eles adoram a facilidade."</p>
+                <p class="masonry-author">Dra. Ana Lopes</p>
+                <p class="masonry-role">Dentista — Braga</p>
+            </div>
+            <div class="masonry-card reveal">
+                <div class="masonry-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="masonry-quote">"Desde que temos website, o número de reservas aumentou 40%. Foi o melhor investimento que fizemos este ano."</p>
+                <p class="masonry-author">Miguel Santos</p>
+                <p class="masonry-role">Restaurante — Faro</p>
+            </div>
+            <div class="masonry-card small reveal">
+                <div class="masonry-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="masonry-quote">"Rápido, profissional e sempre disponível. Nota 10!"</p>
+                <p class="masonry-author">João Almeida</p>
+                <p class="masonry-role">Auto Mecânico — Coimbra</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section class="pricing" id="precos">
+    <div class="container">
+        <p class="section-label reveal">Preços</p>
+        <h2 class="section-title reveal">Investimento claro, sem surpresas</h2>
+        <p class="section-subtitle reveal">Escolha o plano que faz sentido para o seu negócio.</p>
+
+        <div class="pricing-stack reveal">
+            <!-- Starter -->
+            <div class="pricing-card">
+                <div class="pricing-emoji">&#x1F680;</div>
+                <h3 class="pricing-name">Starter</h3>
+                <div class="pricing-price">€199 <span>único</span></div>
+                <p class="pricing-note">Ideal para quem está a começar</p>
+                <ul class="pricing-features">
+                    <li><span class="check">&#10003;</span> Website de 1 página</li>
+                    <li><span class="check">&#10003;</span> Design responsivo</li>
+                    <li><span class="check">&#10003;</span> Formulário de contacto</li>
+                    <li><span class="check">&#10003;</span> Otimização básica de SEO</li>
+                    <li><span class="check">&#10003;</span> Entrega em 5 dias</li>
+                </ul>
+                <a href="#contacto" class="pricing-btn pricing-btn-outline">Começar Agora</a>
+            </div>
+
+            <!-- Business -->
+            <div class="pricing-card">
+                <span class="pricing-badge">Mais Popular</span>
+                <div class="pricing-emoji">&#11088;</div>
+                <h3 class="pricing-name">Business</h3>
+                <div class="pricing-price">€350 <span>único</span></div>
+                <p class="pricing-note">Para negócios que querem crescer</p>
+                <ul class="pricing-features">
+                    <li><span class="check">&#10003;</span> Website até 5 páginas</li>
+                    <li><span class="check">&#10003;</span> Design personalizado</li>
+                    <li><span class="check">&#10003;</span> Formulário de contacto avançado</li>
+                    <li><span class="check">&#10003;</span> SEO completo</li>
+                    <li><span class="check">&#10003;</span> Integração Google Maps</li>
+                    <li><span class="check">&#10003;</span> 3 meses de suporte grátis</li>
+                </ul>
+                <a href="#contacto" class="pricing-btn pricing-btn-primary">Escolher Business</a>
+            </div>
+
+            <!-- Premium -->
+            <div class="pricing-card">
+                <div class="pricing-emoji">&#x1F48E;</div>
+                <h3 class="pricing-name">Premium</h3>
+                <div class="pricing-price">€600 <span>único</span></div>
+                <p class="pricing-note">A solução completa</p>
+                <ul class="pricing-features">
+                    <li><span class="check">&#10003;</span> Website até 10 páginas</li>
+                    <li><span class="check">&#10003;</span> Design premium exclusivo</li>
+                    <li><span class="check">&#10003;</span> Blog integrado</li>
+                    <li><span class="check">&#10003;</span> SEO avançado e analytics</li>
+                    <li><span class="check">&#10003;</span> Sistema de reservas online</li>
+                    <li><span class="check">&#10003;</span> 6 meses de suporte grátis</li>
+                    <li><span class="check">&#10003;</span> Manutenção mensal incluída</li>
+                </ul>
+                <a href="#contacto" class="pricing-btn pricing-btn-outline">Escolher Premium</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── ABOUT / TEAM ─── -->
+<section class="about" id="equipa">
+    <div class="container">
+        <p class="section-label reveal">A Nossa Equipa</p>
+        <h2 class="section-title reveal">Pessoas reais por trás do seu website</h2>
+        <p class="section-subtitle reveal">Não somos uma empresa gigante. Somos uma equipa pequena que se preocupa genuinamente com cada projeto.</p>
+
+        <div class="team-grid reveal">
+            <div class="team-card">
+                <div class="team-photo">&#x1F468;&#x200D;&#x1F4BB;</div>
+                <p class="team-name">Diogo Martins</p>
+                <p class="team-role">Design & Estratégia</p>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">&#x1F469;&#x200D;&#x1F3A8;</div>
+                <p class="team-name">Sara Oliveira</p>
+                <p class="team-role">Desenvolvimento Web</p>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">&#x1F9D1;&#x200D;&#x1F4BC;</div>
+                <p class="team-name">Tiago Costa</p>
+                <p class="team-role">SEO & Marketing</p>
+            </div>
+        </div>
+
+        <p class="about-text reveal">Acreditamos que todos os negócios locais merecem uma presença online profissional. Trabalhamos lado a lado consigo para garantir que o resultado final reflete a qualidade do seu trabalho.</p>
+    </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contacto">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-left reveal">
+                <h2>Vamos dar o primeiro passo?</h2>
+                <p>Não precisa saber nada de tecnologia. Diga-nos o que precisa e nós tratamos de tudo. Sem compromisso, sem pressão. Estamos aqui para ajudar o seu negócio a crescer online.</p>
+                <a href="mailto:ola@webpro.pt" class="contact-email">&#x2709;&#xFE0F; ola@webpro.pt</a>
+            </div>
+            <div class="reveal">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! Entraremos em contacto brevemente.');">
+                    <input type="text" placeholder="O seu nome" required>
+                    <input type="email" placeholder="O seu email" required>
+                    <input type="text" placeholder="Nome do seu negócio">
+                    <textarea placeholder="Conte-nos o que precisa..." required></textarea>
+                    <button type="submit" class="submit-btn">Enviar Mensagem &#x1F4AC;</button>
+                    <p class="form-note">Respondemos em menos de 24h &#x26A1;</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-logo"><span class="dot"></span>WebPro</div>
+            <ul class="footer-links">
+                <li><a href="#processo">Como Funciona</a></li>
+                <li><a href="#testemunhos">Testemunhos</a></li>
+                <li><a href="#precos">Preços</a></li>
+                <li><a href="#equipa">Equipa</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; 2026 WebPro. Todos os direitos reservados.</p>
+            <p class="footer-heart">Feito com &#10084;&#65039; em Portugal</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ─── SCROLL REVEAL ─── -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var reveals = document.querySelectorAll('.reveal');
+
+        function checkReveal() {
+            var windowHeight = window.innerHeight;
+            reveals.forEach(function (el) {
+                var top = el.getBoundingClientRect().top;
+                if (top < windowHeight - 60) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkReveal, { passive: true });
+        checkReveal();
+    });
+</script>
+
+</body>
+</html>
